@@ -9,18 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fef111b8c89b694418e2222484e69e62, type: 3}
+  m_Script: {fileID: -82291597, guid: b756cd77d40dc61409e6c5eb9d0d808d, type: 3}
   m_Name: SceneFusionConfig
   m_EditorClassIdentifier: 
-  ShowGettingStartedScreen: 0
-  Urls:
-    WebAPI: https://matchmaker-console.kinematicsoup.com/api
-    WebConsole: https://console.kinematicsoup.com
-    Download: https://www.kinematicsoup.com/scene-fusion/download/
-    Documentation: https://docs.kinematicsoup.com/SceneFusion/unity/getting_started.html
-    Discord: https://discord.gg/vWeTvPB
-    Youtube: https://www.youtube.com/kinematicsoup
-    SupportEmail: support@kinematicsoup.com
+  ShowGettingStartedScreen: 1
   UI:
     ShowOnlineIndicator: 1
     ShowCollaboratorCamera: 1
@@ -31,10 +23,6 @@ MonoBehaviour:
     Timeout: 30
     ReceiveBufferSize: 1024
     OverrideServerPort: 0
-    Host: localhost
-    Port: 8000
-  Version: 1.9.5
-  ClientBuild: 0
   Debug: 1
-  LastVersion: 1.9.5
-  m_projectId: 0
+  LastVersion: 0.0.0
+  m_projectId: -1
