@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef111b8c89b694418e2222484e69e62, type: 3}
+  m_Name: SceneFusionConfig
+  m_EditorClassIdentifier: 
+  ShowGettingStartedScreen: 0
+  Urls:
+    WebAPI: https://matchmaker-console.kinematicsoup.com/api
+    WebConsole: https://console.kinematicsoup.com
+    Download: https://www.kinematicsoup.com/scene-fusion/download/
+    Documentation: https://docs.kinematicsoup.com/SceneFusion/unity/getting_started.html
+    Discord: https://discord.gg/vWeTvPB
+    Youtube: https://www.youtube.com/kinematicsoup
+    SupportEmail: support@kinematicsoup.com
+  UI:
+    ShowOnlineIndicator: 1
+    ShowCollaboratorCamera: 1
+    ShowCollaboratorTerrainBrush: 1
+    OnlineStatusOffset: {x: 45, y: 0}
+    HierarchyIconOffset: 0
+  Network:
+    Timeout: 30
+    ReceiveBufferSize: 1024
+    OverrideServerPort: 0
+    Host: localhost
+    Port: 8000
+  Version: 1.9.5
+  ClientBuild: 0
+  Debug: 1
+  LastVersion: 1.9.5
+  m_projectId: 0
