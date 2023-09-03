@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
 	    ProcessInputs();
     }
-	
+
 	void FixedUpdate()
 	{
 		Move();
