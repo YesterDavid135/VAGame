@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,17 +9,23 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public Rigidbody2D rb;
     public Weapon weapon;
+    
+    [SerializeField] private float health, maxHealth = 20f;
+    [SerializeField] private FloatingHealthbar Healthbar;
 
     private Vector2 moveDirection;
-
     private Vector2 mousePosition;
 
     // Update is called once per frame
-    void Update() {
-        ProcessInputs();
+    private void Start()
+    {
+        Healthbar = GetComponentInChildren<FloatingHealthbar>();
+        health = maxHealth;
+        Healthbar.UpdateHealthBar(health,maxHealth);
     }
 
     void FixedUpdate() {
+        ProcessInputs();
         Move();
     }
 
@@ -42,5 +49,27 @@ public class PlayerController : MonoBehaviour
         Vector2 aimDirection = mousePosition - rb.position;
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
+    }
+    
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.gameObject.tag)
+        {
+            case "Bullet":
+                TakeDamage(1);
+                break;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log($"Damage Amount: {damage}");
+        health -= damage;
+        Healthbar.UpdateHealthBar(health,maxHealth);
+        Debug.Log($"Health is now {health}");
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
