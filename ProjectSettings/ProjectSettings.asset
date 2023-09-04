@@ -594,7 +594,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: SCENE_FUSION
+    Standalone: SCENE_FUSION;SF_CINEMACHINE
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
