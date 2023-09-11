@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 633493427725590146}
   - component: {fileID: 412637670023835588}
   - component: {fileID: 1357506768078621984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyLongRange
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4471367717714292853}
   - component: {fileID: 2130384642318949766}
   - component: {fileID: 6156187834614546231}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 4179880082379937017}
   - component: {fileID: 29290399437925335}
   - component: {fileID: 4085133226974601141}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 5134892390378059974}
   - component: {fileID: 1877964733427330175}
   - component: {fileID: 8493010623723846495}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   - component: {fileID: 8675926904119242827}
   - component: {fileID: 1539710024898151447}
   - component: {fileID: 7179360689084471509}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -540,7 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7304421200410750166}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,6 +575,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2391660019319278677}
     m_Modifications:
+    - target: {fileID: 2130029065308658923, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2840913371999317431, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.40015
@@ -626,6 +630,10 @@ PrefabInstance:
     - target: {fileID: 7144627565302162711, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
       propertyPath: m_Name
       value: Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144627565302162711, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
