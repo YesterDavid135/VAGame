@@ -8,20 +8,17 @@ public class EnemyLongRange : MonoBehaviour
 {
     public static event Action<EnemyLongRange> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
-    [SerializeField] float moveSpeed = 5f;
     [SerializeField] private FloatingHealthbar Healthbar;
     
     public float speed;
     public float stoppingDistance;
     public float retreatDistance;
     public Transform player;
+    public Weapon weapon;
+
 
     private float timeBetweenShots;
     public float startTimeBetweenShots;
-
-    public GameObject bullet;
-    public Transform firePoint;
-    public float fireForce;
 
     public Rigidbody2D rb;
 
@@ -52,9 +49,7 @@ public class EnemyLongRange : MonoBehaviour
         
         if (timeBetweenShots <= 0)
         {
-            GameObject projectile = Instantiate(bullet, firePoint.position, firePoint.rotation);
-            projectile.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
-            Destroy(projectile, 1);
+            weapon.Fire();
 
             timeBetweenShots = startTimeBetweenShots;
         }
@@ -64,15 +59,13 @@ public class EnemyLongRange : MonoBehaviour
         }
     }
 
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.gameObject.tag)
         {
             case "Bullet":
                 TakeDamage(1);
-                break;
-            case "Player":
-                //Do Damage to player
                 break;
         }
     }
