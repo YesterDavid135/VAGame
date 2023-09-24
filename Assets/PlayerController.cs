@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 moveDirection;
     private Vector2 mousePosition;
 
+    public static event Action OnPlayerDeath;
+    
     // Update is called once per frame
     private void Start() {
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -58,8 +62,10 @@ public class PlayerController : MonoBehaviour {
         health -= damage;
         Healthbar.UpdateHealthBar(health, maxHealth);
         Debug.Log($"Health is now {health}");
-        if (health <= 0) {
-            Destroy(gameObject);
+        if (health <= 0)
+        {
+            health = 0;
+            OnPlayerDeath?.Invoke();
         }
     }
 }
