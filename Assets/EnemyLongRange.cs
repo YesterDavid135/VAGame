@@ -63,9 +63,6 @@ public class EnemyLongRange : MonoBehaviour {
 
     public void TakeDamage(float damageAmount) {
         health -= damageAmount;
-        if (health < 0) {
-            Debug.Log("I'm Dead");
-        }
 
         Healthbar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
