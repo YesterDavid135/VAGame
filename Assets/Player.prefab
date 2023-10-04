@@ -529,6 +529,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 20
   Healthbar: {fileID: 0}
+  currentExperience: 0
+  maxExperience: 300
+  currentLevel: 1
 --- !u!58 &3744979527669952499
 CircleCollider2D:
   m_ObjectHideFlags: 0

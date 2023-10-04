@@ -22,6 +22,8 @@ public class EnemyShortRange : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    private int expAmount = 10;
+    
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -42,7 +44,6 @@ public class EnemyShortRange : MonoBehaviour
         {
             if (isColliding)
             {
-                Debug.Log("Colliding with Player");
                 playerToDamage.TakeDamage(Damage);
                 timeBetweenDamage = startTimeBetweenDamage;
             }
@@ -59,7 +60,6 @@ public class EnemyShortRange : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger Exit");
         if (other.gameObject.CompareTag("Player"))
         {
             isColliding = false;
@@ -74,7 +74,6 @@ public class EnemyShortRange : MonoBehaviour
                 TakeDamage(1);
                 break;
             case "Player":
-                Debug.Log("TriggerEnter");
                 playerToDamage = other.gameObject.GetComponent<PlayerController>();
                 isColliding = true;
                 break;
@@ -83,11 +82,16 @@ public class EnemyShortRange : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        if (this.gameObject.IsDestroyed())
+        {
+            return;
+        }
         health -= damageAmount;
 
         Healthbar.UpdateHealthBar(health, maxHealth);
         if (health <= 0)
         {
+            ExperienceManager.Instance.AddExperience(expAmount);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }

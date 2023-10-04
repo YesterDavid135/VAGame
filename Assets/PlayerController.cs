@@ -8,12 +8,14 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     public Weapon weapon;
 
-    [SerializeField] private float health, maxHealth = 20f;
+    [SerializeField] private float naturalRegenPerSec = 1,health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
+    [SerializeField] private int currentExperience, maxExperience, currentLevel;
 
     private Vector2 moveDirection;
     private Vector2 mousePosition;
 
+    private float timeBetweenHeal = 1;
     public static event Action OnPlayerDeath;
 
     // Update is called once per frame
@@ -26,6 +28,22 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         ProcessInputs();
         Move();
+        if (timeBetweenHeal <= 0) {
+            if (health < maxHealth - naturalRegenPerSec)
+            {
+                health += naturalRegenPerSec;
+                Healthbar.UpdateHealthBar(health, maxHealth);
+            }else if (health < maxHealth)
+            {
+                health = maxHealth;
+                Healthbar.UpdateHealthBar(health, maxHealth);
+            }
+            timeBetweenHeal = 1;
+        }
+        else {
+            timeBetweenHeal -= Time.deltaTime;
+        }
+       
     }
 
     void ProcessInputs() {
@@ -57,6 +75,35 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private void OnEnable()
+    {
+        ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
+    }
+
+    private void OnDisable()
+    {
+        ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
+    }
+
+    private void HandleExperienceChange(int newExperience)
+    {
+        currentExperience += newExperience;
+        if (currentExperience >= maxExperience)
+        {
+            LevelUp();
+        }
+    }
+
+    private void LevelUp()
+    {
+        maxHealth += 10;
+        currentLevel++;
+        currentExperience = 0;
+        maxExperience += 100;
+        
+        Healthbar.UpdateHealthBar(health, maxHealth);
+    }
+    
     public void TakeDamage(float damage) {
         Debug.Log($"Damage Amount: {damage}");
         health -= damage;

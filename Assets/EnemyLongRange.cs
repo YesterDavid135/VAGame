@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyLongRange : MonoBehaviour {
@@ -18,6 +19,8 @@ public class EnemyLongRange : MonoBehaviour {
 
     public Rigidbody2D rb;
 
+    private int expAmount = 20;
+    
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -62,10 +65,15 @@ public class EnemyLongRange : MonoBehaviour {
     }
 
     public void TakeDamage(float damageAmount) {
+        if (this.gameObject.IsDestroyed())
+        {
+            return;
+        }
         health -= damageAmount;
 
         Healthbar.UpdateHealthBar(health, maxHealth);
         if (health <= 0) {
+            ExperienceManager.Instance.AddExperience(expAmount);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
