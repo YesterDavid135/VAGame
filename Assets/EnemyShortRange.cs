@@ -3,20 +3,20 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class EnemyShortRange : MonoBehaviour {
+public class EnemyShortRange : MonoBehaviour
+{
     public static event Action<EnemyShortRange> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
 
     public float speed;
+    public float Damage;
     public float stoppingDistance;
     public Transform playerPos;
     public PlayerController player;
 
-
-    public Transform attackPos;
-    public LayerMask whatIsPlayer;
-    
+    public PlayerController playerToDamage;
+    private bool isColliding = false;
     private float timeBetweenDamage;
     public float startTimeBetweenDamage;
 
@@ -25,16 +25,31 @@ public class EnemyShortRange : MonoBehaviour {
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
         health = maxHealth;
         timeBetweenDamage = startTimeBetweenDamage;
         Healthbar.UpdateHealthBar(health, maxHealth);
     }
 
-    private void FixedUpdate() {
-        if (Vector2.Distance(transform.position, playerPos.position) > stoppingDistance) {
+    private void FixedUpdate()
+    {
+        if (Vector2.Distance(transform.position, playerPos.position) > stoppingDistance)
+        {
             rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
+        }
+
+        if (timeBetweenDamage <= 0)
+        {
+            if (isColliding)
+            {
+                Debug.Log("Colliding with Player");
+                playerToDamage.TakeDamage(Damage);
+                timeBetweenDamage = startTimeBetweenDamage;
+            }
+        }
+        else
+        {
+            timeBetweenDamage -= Time.deltaTime;
         }
 
         Vector2 aimDirection = (Vector2)playerPos.position - rb.position;
@@ -42,35 +57,37 @@ public class EnemyShortRange : MonoBehaviour {
         rb.rotation = aimAngle;
     }
 
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        Debug.Log("Trigger Exit");
+        if (other.gameObject.CompareTag("Player"))
+        {
+            isColliding = false;
+        }
+    }
 
-    public void OnTriggerEnter2D(Collider2D other) {
-        switch (other.gameObject.tag) {
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.gameObject.tag)
+        {
             case "Bullet":
                 TakeDamage(1);
                 break;
             case "Player":
-                if (timeBetweenDamage <= 0)
-                {
-                    Collider2D[] playersToDamage = Physics2D.OverlapCircleAll(attackPos.position, 5, whatIsPlayer);
-                    for (int i = 0; i < playersToDamage.Length; i++)
-                    {
-                        playersToDamage[i].GetComponent<PlayerController>().TakeDamage(1);
-                    }
-                    
-                    timeBetweenDamage = startTimeBetweenDamage;
-                }
-                else {
-                    timeBetweenDamage -= Time.deltaTime;
-                }
+                Debug.Log("TriggerEnter");
+                playerToDamage = other.gameObject.GetComponent<PlayerController>();
+                isColliding = true;
                 break;
         }
     }
 
-    public void TakeDamage(float damageAmount) {
+    public void TakeDamage(float damageAmount)
+    {
         health -= damageAmount;
 
         Healthbar.UpdateHealthBar(health, maxHealth);
-        if (health <= 0) {
+        if (health <= 0)
+        {
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
