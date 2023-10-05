@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
@@ -18,8 +19,15 @@ public class PlayerController : MonoBehaviour {
     private float timeBetweenHeal = 1;
     public static event Action OnPlayerDeath;
 
-    // Update is called once per frame
-    private void Start() {
+    [Header("Dash Settings")] 
+    [SerializeField] public float dashSpeed = 10;
+    [SerializeField] public float dashDuration = 1;
+    [SerializeField] public float dashCooldown = 1;
+    private bool isDashing = false;
+    private bool canDash = true;
+    private void Start()
+    {
+        canDash = true;
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
@@ -50,12 +58,17 @@ public class PlayerController : MonoBehaviour {
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
+        moveDirection = new Vector2(moveX, moveY).normalized;
+        mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
+        
         if (Input.GetMouseButton(0)) {
             weapon.Fire(8);
         }
 
-        moveDirection = new Vector2(moveX, moveY).normalized;
-        mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetMouseButton(1) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     void Move() {
@@ -94,6 +107,16 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed*10, moveDirection.y * moveSpeed*10);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
     private void LevelUp()
     {
         maxHealth += 10;
@@ -105,10 +128,8 @@ public class PlayerController : MonoBehaviour {
     }
     
     public void TakeDamage(float damage) {
-        Debug.Log($"Damage Amount: {damage}");
         health -= damage;
         Healthbar.UpdateHealthBar(health, maxHealth);
-        Debug.Log($"Health is now {health}");
         if (health <= 0) {
             health = 0;
             SceneManager.LoadScene(0);
