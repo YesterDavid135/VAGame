@@ -1,6 +1,7 @@
 using UnityEngine;
+using Weapons;
 
-public class Weapon : MonoBehaviour {
+public class Weapon : MonoBehaviour, IWeapon {
     public GameObject bullet;
 
     public Transform firePoint;
@@ -16,5 +17,14 @@ public class Weapon : MonoBehaviour {
         projectile.transform.rotation = firePoint.rotation;
         projectile.SetActive(true);
         projectile.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+    }
+    public void Reload()
+    {
+        // Implement shotgun reloading logic here
+    }
+
+    public string GetWeaponName()
+    {
+        return "Weapon";
     }
 }

@@ -2,14 +2,17 @@ using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using Weapons;
 
 public class PlayerController : MonoBehaviour {
     public Camera sceneCamera;
     public float moveSpeed;
     public Rigidbody2D rb;
-    public Weapon weapon;
+    public IWeapon weapon;
 
-    [SerializeField] private float naturalRegenPerSec = 1,health, maxHealth = 20f;
+    public GameObject shotgun;
+
+    [SerializeField] private float naturalRegenPerSec = 1, health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
     [SerializeField] private XPBar XPBar;
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
@@ -19,14 +22,15 @@ public class PlayerController : MonoBehaviour {
 
     private float timeBetweenHeal = 1;
 
-    [Header("Dash Settings")] 
-    [SerializeField] public float dashSpeed = 10;
+    [Header("Dash Settings")] [SerializeField]
+    public float dashSpeed = 10;
+
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
     private bool isDashing = false;
     private bool canDash = true;
-    private void Start()
-    {
+
+    private void Start() {
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
@@ -37,21 +41,20 @@ public class PlayerController : MonoBehaviour {
         ProcessInputs();
         Move();
         if (timeBetweenHeal <= 0) {
-            if (health < maxHealth - naturalRegenPerSec)
-            {
+            if (health < maxHealth - naturalRegenPerSec) {
                 health += naturalRegenPerSec;
                 Healthbar.UpdateHealthBar(health, maxHealth);
-            }else if (health < maxHealth)
-            {
+            }
+            else if (health < maxHealth) {
                 health = maxHealth;
                 Healthbar.UpdateHealthBar(health, maxHealth);
             }
+
             timeBetweenHeal = 1;
         }
         else {
             timeBetweenHeal -= Time.deltaTime;
         }
-       
     }
 
     void ProcessInputs() {
@@ -60,13 +63,24 @@ public class PlayerController : MonoBehaviour {
 
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
-        
-        if (Input.GetMouseButton(0)) {
-            weapon.Fire(8);
+
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            Debug.Log("Equipping Shotgun");
+            // Switch to a new weapon (e.g., Shotgun)
+            weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
         }
 
-        if (Input.GetMouseButton(1) && canDash)
-        {
+        if (Input.GetMouseButton(0)) {
+            // Fire the current weapon
+            if (weapon != null) {
+                weapon.Fire(8); // Call the Fire method of the current weapon
+            }
+            else {
+                Debug.Log("No Weapon Equipped");
+            }
+        }
+
+        if (Input.GetMouseButton(1) && canDash) {
             StartCoroutine(Dash());
         }
     }
@@ -88,46 +102,41 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
     }
 
-    private void HandleExperienceChange(int newExperience)
-    {
+    private void HandleExperienceChange(int newExperience) {
         currentExperience += newExperience;
         XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
-        if (currentExperience >= maxExperience)
-        {
+        if (currentExperience >= maxExperience) {
             LevelUp();
         }
     }
 
-    private IEnumerator Dash()
-    {
+    private IEnumerator Dash() {
         canDash = false;
         isDashing = true;
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed*10, moveDirection.y * moveSpeed*10);
+        rb.velocity = new Vector2(moveDirection.x * moveSpeed * 10, moveDirection.y * moveSpeed * 10);
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
-    private void LevelUp()
-    {
+
+    private void LevelUp() {
         maxHealth += 10;
         currentLevel++;
         currentExperience = 0;
         maxExperience += 100;
-        
+
         Healthbar.UpdateHealthBar(health, maxHealth);
     }
-    
+
     public void TakeDamage(float damage) {
         health -= damage;
         Healthbar.UpdateHealthBar(health, maxHealth);

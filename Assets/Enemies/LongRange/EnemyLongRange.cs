@@ -1,6 +1,7 @@
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Weapons;
 
 public class EnemyLongRange : MonoBehaviour {
     public static event Action<EnemyLongRange> OnEnemyKilled;
