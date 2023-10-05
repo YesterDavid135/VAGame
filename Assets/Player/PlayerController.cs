@@ -11,13 +11,13 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private float naturalRegenPerSec = 1,health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
+    [SerializeField] private XPBar XPBar;
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
 
     private Vector2 moveDirection;
     private Vector2 mousePosition;
 
     private float timeBetweenHeal = 1;
-    public static event Action OnPlayerDeath;
 
     [Header("Dash Settings")] 
     [SerializeField] public float dashSpeed = 10;
@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
+        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
     }
 
     void FixedUpdate() {
@@ -101,6 +102,7 @@ public class PlayerController : MonoBehaviour {
     private void HandleExperienceChange(int newExperience)
     {
         currentExperience += newExperience;
+        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
         if (currentExperience >= maxExperience)
         {
             LevelUp();
