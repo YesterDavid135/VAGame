@@ -526,12 +526,16 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 8680767850556360869}
   weapon: {fileID: 3203729844682672543}
+  naturalRegenPerSec: 1
   health: 0
   maxHealth: 20
   Healthbar: {fileID: 0}
   currentExperience: 0
   maxExperience: 300
   currentLevel: 1
+  dashSpeed: 30
+  dashDuration: 1
+  dashCooldown: 2
 --- !u!58 &3744979527669952499
 CircleCollider2D:
   m_ObjectHideFlags: 0
