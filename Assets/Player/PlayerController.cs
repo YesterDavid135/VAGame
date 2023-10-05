@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour {
     private void Start()
     {
         canDash = true;
-        Healthbar = GetComponentInChildren<FloatingHealthbar>();
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
         XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);

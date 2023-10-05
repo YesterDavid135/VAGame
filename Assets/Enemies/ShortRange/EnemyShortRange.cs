@@ -82,18 +82,17 @@ public class EnemyShortRange : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        if (this.gameObject.IsDestroyed())
-        {
-            return;
-        }
         health -= damageAmount;
-
-        Healthbar.UpdateHealthBar(health, maxHealth);
+        
         if (health <= 0)
         {
             ExperienceManager.Instance.AddExperience(expAmount);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
+        }
+        else
+        {
+            Healthbar.UpdateHealthBar(health, maxHealth);
         }
     }
 }
