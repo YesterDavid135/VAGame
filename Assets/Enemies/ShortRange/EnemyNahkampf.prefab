@@ -178,7 +178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 20
+  maxHealth: 30
   Healthbar: {fileID: 0}
   speed: 4
   Damage: 1
@@ -388,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2995032955045399165}
+  text: {fileID: 0}
   camera: {fileID: 3703886066004585963, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
   target: {fileID: 8272468400172462936}
   Offset: {x: 0, y: 1, z: 0}

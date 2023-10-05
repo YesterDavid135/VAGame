@@ -120,12 +120,9 @@ public class PlayerController : MonoBehaviour {
     }
     private void LevelUp()
     {
-        maxHealth += 10;
         currentLevel++;
         currentExperience = 0;
-        maxExperience += 100;
-        
-        Healthbar.UpdateHealthBar(health, maxHealth);
+        maxExperience += (maxExperience / 50);
     }
     
     public void TakeDamage(float damage) {
