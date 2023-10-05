@@ -1,23 +1,28 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
+    [Header("Player Settings")]
     public Camera sceneCamera;
-    public float moveSpeed;
+    public float moveSpeed = 5;
     public Rigidbody2D rb;
     public Weapon weapon;
-
+    public int lvlPoints = 0;
+    
+    private Vector2 moveDirection;
+    private Vector2 mousePosition;
+    private float timeBetweenHeal = 1;
+    
     [SerializeField] private float naturalRegenPerSec = 1,health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
     [SerializeField] private XPBar XPBar;
+    
+    [Header("Experience Manager")]
+    [SerializeField] private TextMeshProUGUI levelPoints;
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
-
-    private Vector2 moveDirection;
-    private Vector2 mousePosition;
-
-    private float timeBetweenHeal = 1;
 
     [Header("Dash Settings")] 
     [SerializeField] public float dashSpeed = 10;
@@ -25,12 +30,14 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float dashCooldown = 1;
     private bool isDashing = false;
     private bool canDash = true;
+    
     private void Start()
     {
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
         XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
+        levelPoints.text = "U-Points: "+lvlPoints;
     }
 
     void FixedUpdate() {
@@ -55,11 +62,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ProcessInputs() {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-
-        moveDirection = new Vector2(moveX, moveY).normalized;
-        mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
         
         if (Input.GetMouseButton(0)) {
             weapon.Fire(8);
@@ -69,6 +71,11 @@ public class PlayerController : MonoBehaviour {
         {
             StartCoroutine(Dash());
         }
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+
+        moveDirection = new Vector2(moveX, moveY).normalized;
+        mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
     }
 
     void Move() {
@@ -79,7 +86,17 @@ public class PlayerController : MonoBehaviour {
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
     }
-
+    private IEnumerator Dash()
+    {
+        Debug.Log("Should Dash");
+        canDash = false;
+        isDashing = true;
+        rb.velocity = new Vector2(moveDirection.x * 99, moveDirection.y * 99);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
     public void OnTriggerEnter2D(Collider2D other) {
         switch (other.gameObject.tag) {
             case "Bullet":
@@ -107,19 +124,10 @@ public class PlayerController : MonoBehaviour {
             LevelUp();
         }
     }
-
-    private IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed*10, moveDirection.y * moveSpeed*10);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
-        yield return new WaitForSeconds(dashCooldown);
-        canDash = true;
-    }
     private void LevelUp()
     {
+        lvlPoints++;
+        levelPoints.text = "U-Points: "+lvlPoints;
         currentLevel++;
         currentExperience = 0;
         maxExperience += (maxExperience / 50);
