@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 633493427725590146}
   - component: {fileID: 412637670023835588}
   - component: {fileID: 1357506768078621984}
+  - component: {fileID: 9543503924872259}
   m_Layer: 7
   m_Name: EnemyLongRange
   m_TagString: Enemy
@@ -173,6 +174,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &9543503924872259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2854587118093112754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8214c124e8e08d4fb44fefb99e6f22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootPrefabs:
+  - {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+  - {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+  - {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+  - {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
 --- !u!1 &3864608111709077786
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,6 +396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 29290399437925335}
+  text: {fileID: 0}
   camera: {fileID: 3703886066004585963, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
   target: {fileID: 2391660019319278677}
   Offset: {x: 0, y: 1, z: 0}

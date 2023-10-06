@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 1285379932194902211}
   - component: {fileID: 1414337294813665436}
   - component: {fileID: 1492556146425423669}
+  - component: {fileID: 1175291893662750628}
   m_Layer: 7
   m_Name: EnemyNahkampf
   m_TagString: Enemy
@@ -285,6 +286,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1175291893662750628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593400043180663761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8214c124e8e08d4fb44fefb99e6f22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootPrefabs:
+  - {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+  - {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+  - {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+  - {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
 --- !u!1 &1277133000929663468
 GameObject:
   m_ObjectHideFlags: 0

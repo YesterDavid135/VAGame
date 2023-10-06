@@ -69,6 +69,7 @@ public class EnemyLongRange : MonoBehaviour {
 
         if (health <= 0) {
             ExperienceManager.Instance.AddExperience(expAmount);
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }
