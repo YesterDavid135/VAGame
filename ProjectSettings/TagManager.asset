@@ -18,7 +18,7 @@ TagManager:
   - Enemy
   - PlayerBullet
   - EnemyBullet
-  - 
+  - Items
   - 
   - 
   - 
@@ -43,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Items
+    uniqueID: 1466795945
     locked: 0
