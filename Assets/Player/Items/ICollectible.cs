@@ -1,3 +1,4 @@
+using UnityEngine;
 
 namespace Player.Items
 {
@@ -5,5 +6,6 @@ namespace Player.Items
     {
         public int getDropChance();
         public void Collect();
+        public void SetTarget(Vector3 position);
     }
 }
