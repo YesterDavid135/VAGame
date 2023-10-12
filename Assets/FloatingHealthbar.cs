@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
@@ -20,7 +21,7 @@ public class FloatingHealthbar : MonoBehaviour
         slider.value = currentValue / maxValue;
         if (text != null)
         {
-            text.text = "Health: " + currentValue + " / " + maxValue;
+            text.text = "Health: " + Math.Round(currentValue,2) + " / " + maxValue;
         }
     }
 

@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
@@ -15,8 +16,8 @@ public class PlayerController : MonoBehaviour {
     private Vector2 moveDirection;
     private Vector2 mousePosition;
     private float timeBetweenHeal = 1;
-    
-    [SerializeField] private float naturalRegenPerSec = 1,health, maxHealth = 20f;
+
+    [SerializeField] public float xpMultiplier = 1,naturalRegenPerSec = 1,health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
     [SerializeField] private XPBar XPBar;
     
@@ -66,11 +67,7 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButton(0)) {
             weapon.Fire(8);
         }
-
-        if (Input.GetMouseButton(1) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
+        
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -79,6 +76,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Move() {
+        if (Input.GetMouseButton(1) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+        
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         // Rotate
@@ -91,7 +93,7 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Should Dash");
         canDash = false;
         isDashing = true;
-        rb.velocity = new Vector2(moveDirection.x * 99, moveDirection.y * 99);
+        rb.velocity = new Vector2(moveDirection.x * 999, moveDirection.y * 999);
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
         yield return new WaitForSeconds(dashCooldown);
@@ -117,7 +119,7 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleExperienceChange(int newExperience)
     {
-        currentExperience += newExperience;
+        currentExperience +=  Mathf.RoundToInt(newExperience *xpMultiplier);
         XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
         if (currentExperience >= maxExperience)
         {

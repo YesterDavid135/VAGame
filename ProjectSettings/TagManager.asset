@@ -19,7 +19,7 @@ TagManager:
   - PlayerBullet
   - EnemyBullet
   - Items
-  - 
+  - Shop
   - 
   - 
   - 
@@ -46,4 +46,10 @@ TagManager:
     locked: 0
   - name: Items
     uniqueID: 1466795945
+    locked: 0
+  - name: UI
+    uniqueID: 3636571213
+    locked: 0
+  - name: Shop
+    uniqueID: 3703251957
     locked: 0
