@@ -186,6 +186,7 @@ MonoBehaviour:
   stoppingDistance: 0.6
   playerPos: {fileID: 0}
   player: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+  deathParticles: {fileID: 2006615336825361849, guid: 153ed9ea6bd11234fbc6867819a84b9a, type: 3}
   playerToDamage: {fileID: 0}
   startTimeBetweenDamage: 0.6
   rb: {fileID: 1492556146425423669}

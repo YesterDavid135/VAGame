@@ -1,13 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using TMPro;
 using UnityEngine;
 
 public class PlayerUpgrades : MonoBehaviour
-{    
+{   
+    [Header("Player")]
     public  PlayerController playerValues;
 
+    
+    [Header("Labels")]
     public TextMeshProUGUI pointsText; // Reference to a UI Text component that displays available points
     public TextMeshProUGUI uCostsHealth; 
     public TextMeshProUGUI uCostsSpeed; 
@@ -18,7 +22,10 @@ public class PlayerUpgrades : MonoBehaviour
     public TextMeshProUGUI currentSpeed; 
     public TextMeshProUGUI currentRegen; 
     public TextMeshProUGUI currentXpMultiplier;
+
+    public TextMeshProUGUI availablePointsDisplay;
     
+    [Header("Initial Upgrade Prices")]
     public int healthUpgradePrice = 1;
     public int speedUpgradePrice = 2;
     public int regenerationUpgradePrice = 3;
@@ -29,7 +36,7 @@ public class PlayerUpgrades : MonoBehaviour
     {
         // Update the available points text
         pointsText.text = "U-Points: " + playerValues.lvlPoints.ToString();
-
+        availablePointsDisplay.text = "Available Points:"+playerValues.lvlPoints.ToString();
     }
 
     private void OnEnable()
@@ -38,6 +45,7 @@ public class PlayerUpgrades : MonoBehaviour
         currentSpeed.text = $"({playerValues.moveSpeed})";
         currentRegen.text = $"({playerValues.naturalRegenPerSec})";
         currentXpMultiplier.text = $"({playerValues.xpMultiplier})";
+        
     }
 
     public void BuyHealthUpgrade()

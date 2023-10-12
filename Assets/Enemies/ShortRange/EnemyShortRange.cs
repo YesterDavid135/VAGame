@@ -15,6 +15,7 @@ public class EnemyShortRange : MonoBehaviour
     public Transform playerPos;
     public PlayerController player;
 
+    public ParticleSystem deathParticles;
     public PlayerController playerToDamage;
     private bool isColliding = false;
     private float timeBetweenDamage;
@@ -88,6 +89,7 @@ public class EnemyShortRange : MonoBehaviour
         {
             ExperienceManager.Instance.AddExperience(expAmount);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             OnEnemyKilled?.Invoke(this);
         }

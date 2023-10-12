@@ -7,6 +7,7 @@ public class EnemyLongRange : MonoBehaviour {
     [SerializeField] private float health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
 
+    public ParticleSystem deathParticles;
     public float speed;
     public float stoppingDistance;
     public float retreatDistance;
@@ -69,8 +70,9 @@ public class EnemyLongRange : MonoBehaviour {
 
         if (health <= 0) {
             ExperienceManager.Instance.AddExperience(expAmount);
-            GetComponent<LootBag>().InstantiateLoot(transform.position);
+            Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
             OnEnemyKilled?.Invoke(this);
         }
         else
