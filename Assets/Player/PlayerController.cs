@@ -3,6 +3,8 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
@@ -31,9 +33,17 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float dashCooldown = 1;
     private bool isDashing = false;
     private bool canDash = true;
+
+    [Header("DamageVignette")] 
+    private Vignette _vignette;
+
+    private PostProcessVolume _volume;
     
     private void Start()
     {
+        _volume = GetComponentInChildren<PostProcessVolume>();
+        _volume.profile.TryGetSettings<Vignette>(out _vignette);
+        
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);

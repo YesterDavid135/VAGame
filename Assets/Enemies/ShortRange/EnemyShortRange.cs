@@ -68,14 +68,15 @@ public class EnemyShortRange : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other)
-    {
+    {            Debug.Log(other.gameObject.tag);
+
         switch (other.gameObject.tag)
         {
             case "Bullet":
                 TakeDamage(1);
                 break;
             case "Player":
-                playerToDamage = other.gameObject.GetComponent<PlayerController>();
+                playerToDamage = other.GetComponentInParent<PlayerController>();
                 isColliding = true;
                 break;
         }
@@ -88,9 +89,9 @@ public class EnemyShortRange : MonoBehaviour
         if (health <= 0)
         {
             ExperienceManager.Instance.AddExperience(expAmount);
-            GetComponent<LootBag>().InstantiateLoot(transform.position);
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            GetComponent<LootBag>().InstantiateLoot(transform.position);
             OnEnemyKilled?.Invoke(this);
         }
         else
