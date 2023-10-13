@@ -37,6 +37,14 @@ public class PlayerController : MonoBehaviour {
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
         XPBar.UpdateXPBar(currentExperience, maxExperience, currentLevel);
+
+        SetAllWeaponsInactive();
+    }
+
+    private void SetAllWeaponsInactive() {
+        pistol.SetActive(false);
+        ak47.SetActive(false);
+        shotgun.SetActive(false);
     }
 
     void FixedUpdate() {
@@ -69,16 +77,22 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             Debug.Log("Equipping Pistol");
             weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            pistol.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
             Debug.Log("Equipping AK47");
             weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            ak47.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3)) {
             Debug.Log("Equipping Shotgun");
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            shotgun.SetActive(true);
         }
 
         if (Input.GetMouseButton(0)) {
