@@ -188,7 +188,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootPrefabs:
-  - {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
   - {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
   - {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
   - {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}

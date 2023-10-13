@@ -179,10 +179,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 30
+  maxHealth: 25
   Healthbar: {fileID: 0}
   speed: 4
-  Damage: 1
+  Damage: 2
   stoppingDistance: 0.6
   playerPos: {fileID: 0}
   player: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
@@ -301,8 +301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootPrefabs:
   - {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
-  - {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
-  - {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
   - {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
 --- !u!1 &1277133000929663468
 GameObject:

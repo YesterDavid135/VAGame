@@ -188,6 +188,6 @@ public class PlayerController : MonoBehaviour {
             heartImage.fillAmount = Mathf.Lerp(0.0f, 1.0f, progress);
             yield return null;
         }
-        heartImage.fillAmount = 0.0f; 
+        heartImage.fillAmount = 1.0f; 
     }
 }
