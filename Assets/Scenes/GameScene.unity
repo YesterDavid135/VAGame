@@ -6423,6 +6423,25 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &975916029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 815480110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bffb62cff98c054e9dd5b781a76fc61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.7735849, g: 0.49155346, b: 0.040138844, a: 0}
+  - {r: 0.509434, g: 0.31328827, b: 0, a: 0}
+  - {r: 0.4811321, g: 0.3910087, b: 0.24737452, a: 0}
+  - {r: 0.6603774, g: 0.3365744, b: 0.14640442, a: 0}
+  duration: 30.7
+  changeInterval: 6.89
 --- !u!1 &1018621229
 GameObject:
   m_ObjectHideFlags: 0
@@ -17124,6 +17143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3703886066004585963, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4857788724819256013, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -17181,6 +17204,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 909535282}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4857788724819256013, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 975916029}
     - targetCorrespondingSourceObject: {fileID: 4857788724819256013, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 975916026}
