@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using Weapons;
+using Weapons.Pistol;
 
 public class EnemyLongRange : MonoBehaviour {
     public static event Action<EnemyLongRange> OnEnemyKilled;
@@ -12,7 +13,7 @@ public class EnemyLongRange : MonoBehaviour {
     public float stoppingDistance;
     public float retreatDistance;
     public Transform player;
-    public Weapon weapon;
+    public Pistol weapon;
 
 
     private float timeBetweenShots;

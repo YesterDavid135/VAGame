@@ -1,4 +1,6 @@
-﻿namespace Weapons {
+﻿using UnityEngine;
+
+namespace Weapons {
     public interface IWeapon
     {
         void Fire(int layer);

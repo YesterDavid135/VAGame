@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     public IWeapon weapon;
 
+    public GameObject pistol;
     public GameObject shotgun;
+    public GameObject ak47;
 
     [SerializeField] private float naturalRegenPerSec = 1, health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour {
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
-        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
+        XPBar.UpdateXPBar(currentExperience, maxExperience, currentLevel);
     }
 
     void FixedUpdate() {
@@ -64,9 +66,18 @@ public class PlayerController : MonoBehaviour {
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
 
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            Debug.Log("Equipping Pistol");
+            weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
+            Debug.Log("Equipping AK47");
+            weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
             Debug.Log("Equipping Shotgun");
-            // Switch to a new weapon (e.g., Shotgun)
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
         }
 
@@ -112,7 +123,7 @@ public class PlayerController : MonoBehaviour {
 
     private void HandleExperienceChange(int newExperience) {
         currentExperience += newExperience;
-        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
+        XPBar.UpdateXPBar(currentExperience, maxExperience, currentLevel);
         if (currentExperience >= maxExperience) {
             LevelUp();
         }

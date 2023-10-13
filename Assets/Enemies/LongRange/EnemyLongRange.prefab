@@ -108,7 +108,7 @@ MonoBehaviour:
   stoppingDistance: 5
   retreatDistance: 4
   player: {fileID: 0}
-  weapon: {fileID: 5235847701393930739}
+  weapon: {fileID: 8028598552718827590, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
   startTimeBetweenShots: 0.5
   rb: {fileID: 1357506768078621984}
 --- !u!58 &412637670023835588
@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 29290399437925335}
+  text: {fileID: 0}
   camera: {fileID: 3703886066004585963, guid: 09a46d0d794876d4d88456963ea7a56e, type: 3}
   target: {fileID: 2391660019319278677}
   Offset: {x: 0, y: 1, z: 0}
@@ -645,14 +646,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2840913371999317431, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
   m_PrefabInstance: {fileID: 2864914327065074101}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5235847701393930739 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8028598552718827590, guid: 0573685b7b99c4f5a95a27d4e1455993, type: 3}
-  m_PrefabInstance: {fileID: 2864914327065074101}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c923112cb3a164bbc04bf450dd425a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
