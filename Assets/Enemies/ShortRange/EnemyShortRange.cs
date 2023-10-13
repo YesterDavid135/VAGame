@@ -68,8 +68,7 @@ public class EnemyShortRange : MonoBehaviour
     }
 
     public void OnTriggerEnter2D(Collider2D other)
-    {            Debug.Log(other.gameObject.tag);
-
+    {
         switch (other.gameObject.tag)
         {
             case "Bullet":

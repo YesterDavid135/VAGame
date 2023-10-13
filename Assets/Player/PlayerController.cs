@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float dashSpeed = 10;
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
-    private bool isDashing = false;
     private bool canDash = true;
 
     [Header("DamageVignette")] 
@@ -100,12 +99,9 @@ public class PlayerController : MonoBehaviour {
     }
     private IEnumerator Dash()
     {
-        Debug.Log("Should Dash");
         canDash = false;
-        isDashing = true;
         moveSpeed += dashSpeed;
         yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
         moveSpeed -= dashSpeed;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
