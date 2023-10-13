@@ -103,9 +103,10 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("Should Dash");
         canDash = false;
         isDashing = true;
-        rb.velocity = new Vector2(moveDirection.x * 999, moveDirection.y * 999);
+        moveSpeed += dashSpeed;
         yield return new WaitForSeconds(dashDuration);
         isDashing = false;
+        moveSpeed -= dashSpeed;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }

@@ -16977,6 +16977,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 86527760}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: levelPoints
       value: 
       objectReference: {fileID: 4744680428529569530}
@@ -16984,6 +16988,14 @@ PrefabInstance:
       propertyPath: sceneCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: dashCooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: dashDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6407849244149988030, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
