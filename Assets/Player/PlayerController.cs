@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Settings")]
@@ -14,6 +15,8 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     public Weapon weapon;
     public int lvlPoints = 0;
+
+    public float healAmount = 20.0f;
     
     private Vector2 moveDirection;
     private Vector2 mousePosition;
@@ -32,17 +35,16 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
     private bool canDash = true;
-
-    [Header("DamageVignette")] 
-    private Vignette _vignette;
-
-    private PostProcessVolume _volume;
+    
+    public Image heartImage;
+    public float healCooldown = 20.0f; 
+    private float lastHealTime; 
+    private Coroutine cooldownCoroutine;
     
     private void Start()
     {
-        _volume = GetComponentInChildren<PostProcessVolume>();
-        _volume.profile.TryGetSettings<Vignette>(out _vignette);
-        
+        lastHealTime = -healCooldown;
+        UpdateHeartFill();
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
@@ -76,6 +78,14 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetMouseButton(0)) {
             weapon.Fire(8);
         }
+        if (Input.GetKeyDown(KeyCode.H) && Time.time - lastHealTime >= healCooldown)
+        {
+            Heal();
+        }
+        if (Input.GetMouseButton(1) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
         
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
@@ -85,10 +95,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Move() {
-        if (Input.GetMouseButton(1) && canDash)
-        {
-            StartCoroutine(Dash());
-        }
         
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
@@ -149,5 +155,39 @@ public class PlayerController : MonoBehaviour {
             health = 0;
             SceneManager.LoadScene(0);
         }
+    }
+    void Heal()
+    {
+        health += healAmount; 
+        health = Mathf.Min(health, maxHealth);
+        Healthbar.UpdateHealthBar(health,maxHealth);
+        lastHealTime = Time.time;
+        if (cooldownCoroutine != null)
+        {
+            StopCoroutine(cooldownCoroutine);
+        }
+        cooldownCoroutine = StartCoroutine(CooldownFill());
+    }
+
+    void UpdateHeartFill()
+    {
+        float timeSinceLastHeal = Time.time - lastHealTime;
+        float fillAmount = Mathf.Clamp01(timeSinceLastHeal / healCooldown);
+        heartImage.fillAmount = fillAmount;
+    }
+
+    IEnumerator CooldownFill()
+    {
+        float startTime = Time.time;
+        float endTime = startTime + healCooldown;
+
+        while (Time.time < endTime)
+        {
+            float elapsed = Time.time - startTime;
+            float progress = elapsed / healCooldown;
+            heartImage.fillAmount = Mathf.Lerp(0.0f, 1.0f, progress);
+            yield return null;
+        }
+        heartImage.fillAmount = 0.0f; 
     }
 }
