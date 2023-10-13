@@ -1,10 +1,6 @@
-using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -16,7 +12,6 @@ public class PlayerController : MonoBehaviour {
     public Weapon weapon;
     public int lvlPoints = 0;
 
-    public float healAmount = 20.0f;
     
     private Vector2 moveDirection;
     private Vector2 mousePosition;
@@ -36,6 +31,8 @@ public class PlayerController : MonoBehaviour {
     [SerializeField] public float dashCooldown = 1;
     private bool canDash = true;
     
+    [Header("Heal Settings")]
+    public float healAmount = 25.0f;
     public Image heartImage;
     public float healCooldown = 20.0f; 
     private float lastHealTime; 
