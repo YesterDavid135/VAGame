@@ -9,7 +9,7 @@ public class FloatingHealthbar : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private Camera camera;
     [SerializeField] private Transform target;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector3 Offset;
     
     public void UpdateHealthBar(float currentValue,float maxValue) {
         slider.value = currentValue / maxValue;
@@ -20,7 +20,7 @@ public class FloatingHealthbar : MonoBehaviour
     void Update() {
         if (target != null) {
             transform.rotation = camera.transform.rotation;
-            transform.position = target.position + offset;
+            transform.position = target.position + Offset;
         }
     }
 }
