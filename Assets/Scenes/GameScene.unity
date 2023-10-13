@@ -1564,7 +1564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -4588,7 +4588,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -5706,7 +5706,6 @@ GameObject:
   - component: {fileID: 909535286}
   - component: {fileID: 909535285}
   - component: {fileID: 909535284}
-  - component: {fileID: 909535283}
   m_Layer: 5
   m_Name: RessourceShop
   m_TagString: Untagged
@@ -5734,33 +5733,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1396, y: 785}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &909535283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909535281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1c14fdf3eae14e4698ba79ca6772164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerValues: {fileID: 3505204973920527063}
-  pointsText: {fileID: 4744680428529569530}
-  uCostsHealth: {fileID: 0}
-  uCostsSpeed: {fileID: 0}
-  uCostsRegen: {fileID: 0}
-  uCostsXpMultiplier: {fileID: 0}
-  currentHealth: {fileID: 0}
-  currentSpeed: {fileID: 0}
-  currentRegen: {fileID: 0}
-  currentXpMultiplier: {fileID: 0}
-  availablePointsDisplay: {fileID: 0}
-  healthUpgradePrice: 1
-  speedUpgradePrice: 1
-  regenerationUpgradePrice: 1
-  xpMultiplierUpgradePrice: 1
 --- !u!114 &909535284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7973,7 +7945,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -9923,7 +9895,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -11003,7 +10975,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -12522,7 +12494,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -13037,7 +13009,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -13933,7 +13905,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
@@ -16006,7 +15978,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 909535283}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
         m_MethodName: BuySpeedUpgrade
         m_Mode: 1
