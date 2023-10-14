@@ -4,7 +4,6 @@ using Weapons;
 
 namespace Weapons.Shotgun {
     public class Shotgun : MonoBehaviour, IWeapon {
-        public GameObject bullet;
         public Transform firePoint;
         public float fireForce = 20;
         public int numberOfBullets = 7;
@@ -28,30 +27,31 @@ namespace Weapons.Shotgun {
         }
 
         public void Fire(int layer) {
-            if (canFire) {
-                for (int i = 0; i < numberOfBullets; i++) {
-                    GameObject projectile = ObjectPooler.current.GetPooledObject();
-                    if (projectile == null) continue;
+            if (!canFire) return;
 
-                    // Calculate the spread angle for this bullet
-                    float bulletAngle = spreadAngle * ((i + 0.5f) / numberOfBullets - 0.5f);
 
-                    // Calculate the rotation based on the spread angle
-                    Quaternion rotation = Quaternion.Euler(0, 0, bulletAngle) * firePoint.rotation;
+            for (int i = 0; i < numberOfBullets; i++) {
+                GameObject projectile = ObjectPooler.current.GetPooledObject();
+                if (projectile == null) continue;
 
-                    // Set the layer, position, and rotation
-                    projectile.layer = layer;
-                    projectile.transform.position = firePoint.position;
-                    projectile.transform.rotation = rotation;
+                // Calculate the spread angle for this bullet
+                float bulletAngle = spreadAngle * ((i + 0.5f) / numberOfBullets - 0.5f);
 
-                    // Activate the projectile and apply force
-                    projectile.SetActive(true);
-                    projectile.GetComponent<Rigidbody2D>()
-                        .AddForce(rotation * Vector2.up * fireForce, ForceMode2D.Impulse);
+                // Calculate the rotation based on the spread angle
+                Quaternion rotation = Quaternion.Euler(0, 0, bulletAngle) * firePoint.rotation;
 
-                    // Set the cooldown and prevent further firing until it elapses
-                    canFire = false;
-                }
+                // Set the layer, position, and rotation
+                projectile.layer = layer;
+                projectile.transform.position = firePoint.position;
+                projectile.transform.rotation = rotation;
+
+                // Activate the projectile and apply force
+                projectile.SetActive(true);
+                projectile.GetComponent<Rigidbody2D>()
+                    .AddForce(rotation * Vector2.up * fireForce, ForceMode2D.Impulse);
+
+                // Set the cooldown and prevent further firing until it elapses
+                canFire = false;
             }
         }
 

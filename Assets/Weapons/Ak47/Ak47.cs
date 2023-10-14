@@ -3,14 +3,29 @@ using Weapons;
 
 namespace Weapons.Ak47 {
     public class Ak47 : MonoBehaviour, IWeapon {
-        public GameObject bullet;
-
         public Transform firePoint;
-
         public float fireForce;
-        // Start is called before the first frame update
+
+        public float fireRate = 0.1f;
+        private bool canFire = true; // Add this variable to control the cooldown
+        private float cooldownTimer; // Set the cooldown time
+
+        // Update is called once per frame
+        void Update() {
+            // Check if the cooldown timer has elapsed
+            if (!canFire) {
+                cooldownTimer -= Time.deltaTime;
+                Debug.Log(cooldownTimer);
+                if (cooldownTimer <= 0) {
+                    canFire = true;
+                    cooldownTimer = fireRate; // Reset the timer
+                }
+            }
+        }
 
         public void Fire(int layer) {
+            if (!canFire) return;
+
             GameObject projectile = ObjectPooler.current.GetPooledObject();
             if (projectile == null) return;
             projectile.layer = layer;
@@ -18,6 +33,8 @@ namespace Weapons.Ak47 {
             projectile.transform.rotation = firePoint.rotation;
             projectile.SetActive(true);
             projectile.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+
+            canFire = false;
         }
 
         public void Reload() {
