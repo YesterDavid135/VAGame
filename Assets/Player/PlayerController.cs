@@ -1,17 +1,29 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using Weapons;
 public class PlayerController : MonoBehaviour {
     [Header("Player Settings")]
     public Camera sceneCamera;
     public float moveSpeed = 5;
     public Rigidbody2D rb;
-    public Weapon weapon;
+    public IWeapon weapon;
     public int lvlPoints = 0;
 
+    [Header("Weapon Settings")]
+    public GameObject pistol;
+    public GameObject shotgun;
+    public GameObject ak47;
+    
+    private bool key1Pistol = false;
+    private bool key2AK47 = false;
+    private bool key3Shotgun = false;
+    private bool key4RocketLauncher = false;
+    private bool mousebutton0Fire = false;
+    private bool keyhHeal = false;
     
     private Vector2 moveDirection;
     private Vector2 mousePosition;
@@ -47,6 +59,41 @@ public class PlayerController : MonoBehaviour {
         Healthbar.UpdateHealthBar(health, maxHealth);
         XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
         levelPoints.text = "U-Points: "+lvlPoints;
+        SetAllWeaponsInactive();
+    }
+    private void SetAllWeaponsInactive() {
+        pistol.SetActive(false);
+        ak47.SetActive(false);
+        shotgun.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            key1Pistol = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            key2AK47 = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            key3Shotgun = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            key4RocketLauncher = true;
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            keyhHeal = true;
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            mousebutton0Fire = true;
+        }
     }
 
     void FixedUpdate() {
@@ -69,15 +116,48 @@ public class PlayerController : MonoBehaviour {
         }
        
     }
-
     void ProcessInputs() {
-        
-        if (Input.GetMouseButton(0)) {
-            weapon.Fire(8);
+        if (key1Pistol) {
+            Debug.Log("Equipping Pistol");
+            weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            pistol.SetActive(true);
+            key1Pistol = false;
         }
-        if (Input.GetKeyDown(KeyCode.H) && Time.time - lastHealTime >= healCooldown)
+
+        if (key2AK47) {
+            Debug.Log("Equipping AK47");
+            weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            ak47.SetActive(true);
+            key2AK47 = false;
+        }
+
+        if (key3Shotgun) {
+            Debug.Log("Equipping Shotgun");
+            weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            shotgun.SetActive(true);
+            key3Shotgun = false;
+        }
+        
+        if (mousebutton0Fire && weapon != null) {
+            weapon.Fire(8);
+            mousebutton0Fire = false;
+        }
+        else
+        {
+            mousebutton0Fire = false;
+        }
+
+        if (keyhHeal && Time.time - lastHealTime >= healCooldown)
         {
             Heal();
+            keyhHeal = false;
+        }
+        else
+        {
+            keyhHeal = false;
         }
         if (Input.GetMouseButton(1) && canDash)
         {
