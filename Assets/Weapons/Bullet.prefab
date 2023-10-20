@@ -100,6 +100,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: -4517863551015586136}
+  damage: 1
+  isExplosive: 0
+  explosionRadius: 2
+  explosionDamage: 5
+  explosion: {fileID: 502655239315619574, guid: 7aa9e0b408819ee41af7f2fafde627cd, type: 3}
 --- !u!50 &-4517863551015586136
 Rigidbody2D:
   serializedVersion: 4

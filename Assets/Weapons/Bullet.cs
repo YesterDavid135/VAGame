@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour {
 
     public float explosionRadius = 2f; // Adjust the radius as needed
     public int explosionDamage = 5;
+    public GameObject explosion;
 
     private void OnEnable() {
         if (rb2d != null) {
@@ -20,7 +21,7 @@ public class Bullet : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other) {
         if (isExplosive) {
             // Check if the bullet is explosive and apply damage to all nearby objects.
-            Explode();
+            Explode(transform.position);
         }
         else {
             // If not explosive, handle collisions as before.
@@ -35,7 +36,8 @@ public class Bullet : MonoBehaviour {
         }
     }
 
-    void Explode() {
+    void Explode(Vector3 position) {
+        Instantiate(explosion, position, Quaternion.identity);
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
         foreach (Collider2D hit in colliders) {
