@@ -1,12 +1,12 @@
 using UnityEngine;
 using Weapons;
 
-namespace Weapons.Ak47 {
-    public class Ak47 : MonoBehaviour, IWeapon {
+namespace Weapons.RocketLauncher {
+    public class RocketLauncher : MonoBehaviour, IWeapon {
         public Transform firePoint;
-        public float fireForce;
+        public float fireForce = 5;
 
-        public float fireRate = 0.1f;
+        public float fireRate = 4f;
         private bool canFire = true; // Add this variable to control the cooldown
         private float cooldownTimer; // Set the cooldown time
 
@@ -31,11 +31,10 @@ namespace Weapons.Ak47 {
             projectile.layer = layer;
             projectile.transform.position = firePoint.position;
             projectile.transform.rotation = firePoint.rotation;
-
             Bullet bulletComponent = projectile.GetComponent<Bullet>();
             if (bulletComponent != null) {
-                bulletComponent.damage = 4; // Set the desired damage value
-                bulletComponent.isExplosive = false; // Set whether it's explosive or not
+                bulletComponent.damage = 5; // Set the desired damage value
+                bulletComponent.isExplosive = true; // Set whether it's explosive or not
             }
 
             projectile.SetActive(true);
@@ -49,7 +48,7 @@ namespace Weapons.Ak47 {
         }
 
         public string GetWeaponName() {
-            return "Ak47";
+            return "RocketLauncher";
         }
     }
 }

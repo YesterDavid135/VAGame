@@ -1,8 +1,11 @@
 using System;
+using Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
+using Weapons;
+using Weapons.Pistol;
 
-public class EnemyLongRange : MonoBehaviour {
+public class EnemyLongRange : MonoBehaviour, IEnemy {
     public static event Action<EnemyLongRange> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
@@ -12,7 +15,7 @@ public class EnemyLongRange : MonoBehaviour {
     public float stoppingDistance;
     public float retreatDistance;
     public Transform player;
-    public Weapon weapon;
+    public Pistol weapon;
 
 
     private float timeBetweenShots;
@@ -21,7 +24,7 @@ public class EnemyLongRange : MonoBehaviour {
     public Rigidbody2D rb;
 
     private int expAmount = 20;
-    
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -60,7 +63,8 @@ public class EnemyLongRange : MonoBehaviour {
     public void OnTriggerEnter2D(Collider2D other) {
         switch (other.gameObject.tag) {
             case "Bullet":
-                TakeDamage(1);
+                Bullet bullet = other.GetComponent<Bullet>();
+                TakeDamage(bullet.damage);
                 break;
         }
     }
@@ -75,8 +79,7 @@ public class EnemyLongRange : MonoBehaviour {
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             OnEnemyKilled?.Invoke(this);
         }
-        else
-        {
+        else {
             Healthbar.UpdateHealthBar(health, maxHealth);
         }
     }

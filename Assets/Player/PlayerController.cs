@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour {
     public GameObject pistol;
     public GameObject shotgun;
     public GameObject ak47;
-    
+    public GameObject rocketlauncher;
+
     private bool key1Pistol = false;
     private bool key2AK47 = false;
     private bool key3Shotgun = false;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour {
         pistol.SetActive(false);
         ak47.SetActive(false);
         shotgun.SetActive(false);
+        rocketlauncher.SetActive(false);
     }
 
     private void Update()
@@ -139,6 +141,13 @@ public class PlayerController : MonoBehaviour {
             SetAllWeaponsInactive();
             shotgun.SetActive(true);
             key3Shotgun = false;
+        }
+        if (key4RocketLauncher) {
+            Debug.Log("Equipping Rocket Launcher");
+            weapon = rocketlauncher.GetComponent<IWeapon>(); // Change to the desired weapon type
+            SetAllWeaponsInactive();
+            rocketlauncher.SetActive(true);
+            key4RocketLauncher = false;
         }
         
         if (mousebutton0Fire && weapon != null) {

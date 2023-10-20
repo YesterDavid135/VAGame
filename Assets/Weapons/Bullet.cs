@@ -1,7 +1,13 @@
+using Enemies;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour {
     public Rigidbody2D rb2d;
+    public int damage = 1;
+    public bool isExplosive = false;
+
+    public float explosionRadius = 2f; // Adjust the radius as needed
+    public int explosionDamage = 5;
 
     private void OnEnable() {
         if (rb2d != null) {
@@ -12,14 +18,35 @@ public class Bullet : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
-        switch (other.gameObject.tag) {
-            case "Wall":
-                Disable();
-                break;
-            case "Enemy":
-                Disable();
-                break;
+        if (isExplosive) {
+            // Check if the bullet is explosive and apply damage to all nearby objects.
+            Explode();
         }
+        else {
+            // If not explosive, handle collisions as before.
+            switch (other.gameObject.tag) {
+                case "Wall":
+                    Disable();
+                    break;
+                case "Enemy":
+                    Disable();
+                    break;
+            }
+        }
+    }
+
+    void Explode() {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        foreach (Collider2D hit in colliders) {
+            // Check if the hit object implements the IDamageable interface
+            IEnemy damageable = hit.GetComponent<IEnemy>();
+            if (damageable != null) {
+                damageable.TakeDamage(explosionDamage);
+            }
+        }
+
+        Disable(); // Disable the projectile after the explosion
     }
 
     void Disable() {

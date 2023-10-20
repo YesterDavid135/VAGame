@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Enemies;
 using Unity.Mathematics;
 using Random = Unity.Mathematics.Random;
 
-public class Buggy : MonoBehaviour
+public class Buggy : MonoBehaviour, IEnemy
 {
     public static event Action<Buggy> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
@@ -83,7 +84,8 @@ public class Buggy : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Bullet":
-                TakeDamage(1);
+                Bullet bullet = other.GetComponent<Bullet>();
+                TakeDamage(bullet.damage);
                 break;
             case "Player":
                 playerToDamage = other.GetComponentInParent<PlayerController>();

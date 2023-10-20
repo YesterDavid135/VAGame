@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2840913371999317431}
   - component: {fileID: 32256332055811747}
-  - component: {fileID: 6721167764751028973}
+  - component: {fileID: -2186678538110257171}
   m_Layer: 0
-  m_Name: Pistol
+  m_Name: RocketLauncher
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 99891f473149bf14fa5468bb9b83908e, type: 3}
-  m_Color: {r: 0.59044695, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.16398184, g: 0.6320754, b: 0.39086154, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -117,7 +117,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6721167764751028973
+--- !u!114 &-2186678538110257171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,9 +126,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7144627565302162711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98d7c53ee6dba741bb6b1a47e9ee11c, type: 3}
+  m_Script: {fileID: 11500000, guid: 077a9f219e664d6f96f5c4a1e023b633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 5868688107813400276}
-  fireForce: 20
-  fireRate: 0.3
+  fireForce: 5
+  fireRate: 4

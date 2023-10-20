@@ -1,10 +1,10 @@
 using System;
+using Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class EnemyRobot : MonoBehaviour
-{
+public class EnemyRobot : MonoBehaviour, IEnemy {
     public static event Action<EnemyRobot> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
@@ -24,9 +24,8 @@ public class EnemyRobot : MonoBehaviour
     public Rigidbody2D rb;
 
     private int expAmount = 10;
-    
-    void Start()
-    {
+
+    void Start() {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
         health = maxHealth;
@@ -34,23 +33,18 @@ public class EnemyRobot : MonoBehaviour
         Healthbar.UpdateHealthBar(health, maxHealth);
     }
 
-    private void FixedUpdate()
-    {
-        if (Vector2.Distance(transform.position, playerPos.position) > stoppingDistance)
-        {
+    private void FixedUpdate() {
+        if (Vector2.Distance(transform.position, playerPos.position) > stoppingDistance) {
             rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
         }
 
-        if (timeBetweenDamage <= 0)
-        {
-            if (isColliding)
-            {
+        if (timeBetweenDamage <= 0) {
+            if (isColliding) {
                 playerToDamage.TakeDamage(Damage);
                 timeBetweenDamage = startTimeBetweenDamage;
             }
         }
-        else
-        {
+        else {
             timeBetweenDamage -= Time.deltaTime;
         }
 
@@ -59,20 +53,17 @@ public class EnemyRobot : MonoBehaviour
         rb.rotation = aimAngle;
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
+    public void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Player")) {
             isColliding = false;
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        switch (other.gameObject.tag)
-        {
+    public void OnTriggerEnter2D(Collider2D other) {
+        switch (other.gameObject.tag) {
             case "Bullet":
-                TakeDamage(1);
+                Bullet bullet = other.GetComponent<Bullet>();
+                TakeDamage(bullet.damage);
                 break;
             case "Player":
                 playerToDamage = other.GetComponentInParent<PlayerController>();
@@ -81,20 +72,17 @@ public class EnemyRobot : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damageAmount)
-    {
+    public void TakeDamage(float damageAmount) {
         health -= damageAmount;
-        
-        if (health <= 0)
-        {
+
+        if (health <= 0) {
             ExperienceManager.Instance.AddExperience(expAmount);
             Instantiate(deathParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
             GetComponent<LootBag>().InstantiateLoot(transform.position);
             OnEnemyKilled?.Invoke(this);
         }
-        else
-        {
+        else {
             Healthbar.UpdateHealthBar(health, maxHealth);
         }
     }

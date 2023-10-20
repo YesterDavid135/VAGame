@@ -4,7 +4,7 @@ using Weapons;
 namespace Weapons.Pistol {
     public class Pistol : MonoBehaviour, IWeapon {
         public Transform firePoint;
-        public float fireForce;
+        public float fireForce = 5;
 
         public float fireRate = 0.3f;
         private bool canFire = true; // Add this variable to control the cooldown
@@ -31,7 +31,15 @@ namespace Weapons.Pistol {
             projectile.layer = layer;
             projectile.transform.position = firePoint.position;
             projectile.transform.rotation = firePoint.rotation;
+
+            Bullet bulletComponent = projectile.GetComponent<Bullet>();
+            if (bulletComponent != null) {
+                bulletComponent.damage = 1; // Set the desired damage value
+                bulletComponent.isExplosive = false; // Set whether it's explosive or not
+            }
+
             projectile.SetActive(true);
+
             projectile.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
 
             canFire = false;

@@ -1,9 +1,10 @@
 using System;
+using Enemies;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class EnemyShortRange : MonoBehaviour
+public class EnemyShortRange : MonoBehaviour, IEnemy
 {
     public static event Action<EnemyShortRange> OnEnemyKilled;
     [SerializeField] private float health, maxHealth = 20f;
@@ -72,7 +73,8 @@ public class EnemyShortRange : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Bullet":
-                TakeDamage(1);
+                Bullet bullet = other.GetComponent<Bullet>();
+                TakeDamage(bullet.damage);
                 break;
             case "Player":
                 playerToDamage = other.GetComponentInParent<PlayerController>();

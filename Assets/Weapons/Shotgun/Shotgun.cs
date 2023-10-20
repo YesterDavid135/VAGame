@@ -45,6 +45,12 @@ namespace Weapons.Shotgun {
                 projectile.transform.position = firePoint.position;
                 projectile.transform.rotation = rotation;
 
+                Bullet bulletComponent = projectile.GetComponent<Bullet>();
+                if (bulletComponent != null) {
+                    bulletComponent.damage = 5; // Set the desired damage value
+                    bulletComponent.isExplosive = false; // Set whether it's explosive or not
+                }
+
                 // Activate the projectile and apply force
                 projectile.SetActive(true);
                 projectile.GetComponent<Rigidbody2D>()
