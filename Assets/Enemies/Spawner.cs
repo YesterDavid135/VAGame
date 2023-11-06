@@ -20,6 +20,15 @@ public class Spawner : MonoBehaviour {
             currentTimeToSpawn = timeToSpawn;
         }
     }
+    public void SetTimeBetweenSpawns(float newTime)
+    {
+        currentTimeToSpawn = newTime;
+    }
+
+    public float CalculateNewSpawnTime()
+    {
+        return Mathf.Max(1f, currentTimeToSpawn - 0.1f);
+    }
 
     public void SpawnObject() {
         Instantiate(objectToSpawn, transform.position, transform.rotation);

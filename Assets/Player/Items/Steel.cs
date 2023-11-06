@@ -27,7 +27,7 @@ namespace Player.Items
             if (hasTarget)
             {
                 Vector2 targetDirection = (TargetPosition - transform.position).normalized;
-                rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * 5;
+                rb.velocity = new Vector2(targetDirection.x, targetDirection.y) * 10;
             }
         }
         private void Awake()
