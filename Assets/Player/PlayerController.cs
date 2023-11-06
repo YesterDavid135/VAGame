@@ -120,7 +120,6 @@ public class PlayerController : MonoBehaviour {
     }
     void ProcessInputs() {
         if (key1Pistol) {
-            Debug.Log("Equipping Pistol");
             weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             pistol.SetActive(true);
@@ -128,7 +127,6 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (key2AK47) {
-            Debug.Log("Equipping AK47");
             weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             ak47.SetActive(true);
@@ -136,14 +134,12 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (key3Shotgun) {
-            Debug.Log("Equipping Shotgun");
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             shotgun.SetActive(true);
             key3Shotgun = false;
         }
         if (key4RocketLauncher) {
-            Debug.Log("Equipping Rocket Launcher");
             weapon = rocketlauncher.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             rocketlauncher.SetActive(true);

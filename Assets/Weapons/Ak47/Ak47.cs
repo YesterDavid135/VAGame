@@ -15,7 +15,6 @@ namespace Weapons.Ak47 {
             // Check if the cooldown timer has elapsed
             if (!canFire) {
                 cooldownTimer -= Time.deltaTime;
-                Debug.Log(cooldownTimer);
                 if (cooldownTimer <= 0) {
                     canFire = true;
                     cooldownTimer = fireRate; // Reset the timer
