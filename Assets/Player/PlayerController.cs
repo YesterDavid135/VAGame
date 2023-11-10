@@ -1,20 +1,20 @@
 using System;
 using UnityEngine;
 using System.Collections;
+using Player.Items;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Weapons;
+
 public class PlayerController : MonoBehaviour {
-    [Header("Player Settings")]
-    public Camera sceneCamera;
+    [Header("Player Settings")] public Camera sceneCamera;
     public float moveSpeed = 5;
     public Rigidbody2D rb;
     public IWeapon weapon;
     public int lvlPoints = 0;
 
-    [Header("Weapon Settings")]
-    public GameObject pistol;
+    [Header("Weapon Settings")] public GameObject pistol;
     public GameObject shotgun;
     public GameObject ak47;
     public GameObject rocketlauncher;
@@ -25,43 +25,50 @@ public class PlayerController : MonoBehaviour {
     private bool key4RocketLauncher = false;
     private bool mousebutton0Fire = false;
     private bool keyhHeal = false;
-    
+
     private Vector2 moveDirection;
     private Vector2 mousePosition;
     private float timeBetweenHeal = 1;
 
-    [SerializeField] public float xpMultiplier = 1,naturalRegenPerSec = 1,health, maxHealth = 20f;
+    [SerializeField] public float xpMultiplier = 1, naturalRegenPerSec = 1, health, maxHealth = 20f;
     [SerializeField] private FloatingHealthbar Healthbar;
     [SerializeField] private XPBar XPBar;
-    
-    [Header("Experience Manager")]
-    [SerializeField] private TextMeshProUGUI levelPoints;
+
+    [Header("Experience Manager")] [SerializeField]
+    private TextMeshProUGUI levelPoints;
+
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
 
-    [Header("Dash Settings")] 
-    [SerializeField] public float dashSpeed = 10;
+    [Header("Dash Settings")] [SerializeField]
+    public float dashSpeed = 10;
+
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
     private bool canDash = true;
-    
-    [Header("Heal Settings")]
-    public float healAmount = 25.0f;
+
+    [Header("Heal Settings")] public float healAmount = 25.0f;
     public Image heartImage;
-    public float healCooldown = 20.0f; 
-    private float lastHealTime; 
+    public float healCooldown = 20.0f;
+    private float lastHealTime;
     private Coroutine cooldownCoroutine;
-    
-    private void Start()
-    {
+
+    [Header("Item Counts")] public int copperCount = 0;
+    public int steelCount = 0;
+    public int goldCount = 0;
+    public int electronicCount = 0;
+
+
+    private void Start() {
         lastHealTime = -healCooldown;
         UpdateHeartFill();
         canDash = true;
         health = maxHealth;
         Healthbar.UpdateHealthBar(health, maxHealth);
-        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
-        levelPoints.text = "U-Points: "+lvlPoints;
+        XPBar.UpdateXPBar(currentExperience, maxExperience, currentLevel);
+        levelPoints.text = "U-Points: " + lvlPoints;
         SetAllWeaponsInactive();
     }
+
     private void SetAllWeaponsInactive() {
         pistol.SetActive(false);
         ak47.SetActive(false);
@@ -69,31 +76,28 @@ public class PlayerController : MonoBehaviour {
         rocketlauncher.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
             key1Pistol = true;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Alpha2)) {
             key2AK47 = true;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
             key3Shotgun = true;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Alpha4)) {
             key4RocketLauncher = true;
         }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
+
+        if (Input.GetKeyDown(KeyCode.H)) {
             keyhHeal = true;
         }
 
-        if (Input.GetMouseButton(0))
-        {
+        if (Input.GetMouseButton(0)) {
             mousebutton0Fire = true;
         }
     }
@@ -102,22 +106,22 @@ public class PlayerController : MonoBehaviour {
         ProcessInputs();
         Move();
         if (timeBetweenHeal <= 0) {
-            if (health < maxHealth - naturalRegenPerSec)
-            {
+            if (health < maxHealth - naturalRegenPerSec) {
                 health += naturalRegenPerSec;
                 Healthbar.UpdateHealthBar(health, maxHealth);
-            }else if (health < maxHealth)
-            {
+            }
+            else if (health < maxHealth) {
                 health = maxHealth;
                 Healthbar.UpdateHealthBar(health, maxHealth);
             }
+
             timeBetweenHeal = 1;
         }
         else {
             timeBetweenHeal -= Time.deltaTime;
         }
-       
     }
+
     void ProcessInputs() {
         if (key1Pistol) {
             weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
@@ -139,36 +143,34 @@ public class PlayerController : MonoBehaviour {
             shotgun.SetActive(true);
             key3Shotgun = false;
         }
+
         if (key4RocketLauncher) {
             weapon = rocketlauncher.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             rocketlauncher.SetActive(true);
             key4RocketLauncher = false;
         }
-        
+
         if (mousebutton0Fire && weapon != null) {
             weapon.Fire(8);
             mousebutton0Fire = false;
         }
-        else
-        {
+        else {
             mousebutton0Fire = false;
         }
 
-        if (keyhHeal && Time.time - lastHealTime >= healCooldown)
-        {
+        if (keyhHeal && Time.time - lastHealTime >= healCooldown) {
             Heal();
             keyhHeal = false;
         }
-        else
-        {
+        else {
             keyhHeal = false;
         }
-        if (Input.GetMouseButton(1) && canDash)
-        {
+
+        if (Input.GetMouseButton(1) && canDash) {
             StartCoroutine(Dash());
         }
-        
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -177,7 +179,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Move() {
-        
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
 
         // Rotate
@@ -185,8 +186,8 @@ public class PlayerController : MonoBehaviour {
         float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = aimAngle;
     }
-    private IEnumerator Dash()
-    {
+
+    private IEnumerator Dash() {
         canDash = false;
         moveSpeed += dashSpeed;
         yield return new WaitForSeconds(dashDuration);
@@ -194,42 +195,56 @@ public class PlayerController : MonoBehaviour {
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
+
     public void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(other.gameObject);
         switch (other.gameObject.tag) {
             case "Bullet":
                 TakeDamage(1);
                 break;
+            case "Copper":
+                other.gameObject.GetComponent<Copper>().Collect();
+                copperCount++;
+                break;
+            case "Gold":
+                other.gameObject.GetComponent<Gold>().Collect();
+                goldCount++;
+                break;
+            case "Electronic":
+                other.gameObject.GetComponent<Electronics>().Collect();
+                electronicCount++;
+                break;
+            case "Steel":
+                other.gameObject.GetComponent<Steel>().Collect();
+                steelCount++;
+                break;
         }
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() {
         ExperienceManager.Instance.OnExperienceChange += HandleExperienceChange;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         ExperienceManager.Instance.OnExperienceChange -= HandleExperienceChange;
     }
 
-    private void HandleExperienceChange(int newExperience)
-    {
-        currentExperience +=  Mathf.RoundToInt(newExperience *xpMultiplier);
-        XPBar.UpdateXPBar(currentExperience,maxExperience,currentLevel);
-        if (currentExperience >= maxExperience)
-        {
+    private void HandleExperienceChange(int newExperience) {
+        currentExperience += Mathf.RoundToInt(newExperience * xpMultiplier);
+        XPBar.UpdateXPBar(currentExperience, maxExperience, currentLevel);
+        if (currentExperience >= maxExperience) {
             LevelUp();
         }
     }
-    private void LevelUp()
-    {
+
+    private void LevelUp() {
         lvlPoints++;
-        levelPoints.text = "U-Points: "+lvlPoints;
+        levelPoints.text = "U-Points: " + lvlPoints;
         currentLevel++;
         currentExperience = 0;
         maxExperience += (maxExperience / 50);
     }
-    
+
     public void TakeDamage(float damage) {
         health -= damage;
         Healthbar.UpdateHealthBar(health, maxHealth);
@@ -238,38 +253,36 @@ public class PlayerController : MonoBehaviour {
             SceneManager.LoadScene(0);
         }
     }
-    void Heal()
-    {
-        health += healAmount; 
+
+    void Heal() {
+        health += healAmount;
         health = Mathf.Min(health, maxHealth);
-        Healthbar.UpdateHealthBar(health,maxHealth);
+        Healthbar.UpdateHealthBar(health, maxHealth);
         lastHealTime = Time.time;
-        if (cooldownCoroutine != null)
-        {
+        if (cooldownCoroutine != null) {
             StopCoroutine(cooldownCoroutine);
         }
+
         cooldownCoroutine = StartCoroutine(CooldownFill());
     }
 
-    void UpdateHeartFill()
-    {
+    void UpdateHeartFill() {
         float timeSinceLastHeal = Time.time - lastHealTime;
         float fillAmount = Mathf.Clamp01(timeSinceLastHeal / healCooldown);
         heartImage.fillAmount = fillAmount;
     }
 
-    IEnumerator CooldownFill()
-    {
+    IEnumerator CooldownFill() {
         float startTime = Time.time;
         float endTime = startTime + healCooldown;
 
-        while (Time.time < endTime)
-        {
+        while (Time.time < endTime) {
             float elapsed = Time.time - startTime;
             float progress = elapsed / healCooldown;
             heartImage.fillAmount = Mathf.Lerp(0.0f, 1.0f, progress);
             yield return null;
         }
-        heartImage.fillAmount = 1.0f; 
+
+        heartImage.fillAmount = 1.0f;
     }
 }

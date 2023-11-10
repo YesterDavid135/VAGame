@@ -7,6 +7,10 @@ TagManager:
   - Wall
   - Enemy
   - Bullet
+  - Copper
+  - Gold
+  - Electronic
+  - Steel
   layers:
   - Default
   - TransparentFX
