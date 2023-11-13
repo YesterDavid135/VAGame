@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour {
     public GameObject ak47;
     public GameObject rocketlauncher;
 
+    private bool hasAk;
+    private bool hasShotgun;
+    private bool hasRocketLauncher;
+
     private bool key1Pistol = false;
     private bool key2AK47 = false;
     private bool key3Shotgun = false;
@@ -105,7 +109,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         ProcessInputs();
         Move();
-        if (timeBetweenHeal <= 0) {
+        if (timeBetweenHeal <= 0 || true) {
             if (health < maxHealth - naturalRegenPerSec) {
                 health += naturalRegenPerSec;
                 Healthbar.UpdateHealthBar(health, maxHealth);
@@ -130,21 +134,21 @@ public class PlayerController : MonoBehaviour {
             key1Pistol = false;
         }
 
-        if (key2AK47) {
+        if (key2AK47 && hasAk) {
             weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             ak47.SetActive(true);
             key2AK47 = false;
         }
 
-        if (key3Shotgun) {
+        if (key3Shotgun && hasShotgun) {
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             shotgun.SetActive(true);
             key3Shotgun = false;
         }
 
-        if (key4RocketLauncher) {
+        if (key4RocketLauncher && hasRocketLauncher) {
             weapon = rocketlauncher.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             rocketlauncher.SetActive(true);
@@ -270,23 +274,52 @@ public class PlayerController : MonoBehaviour {
         heartImage.fillAmount = 1.0f;
     }
 
-    public void IncrementCopper()
-    {
+    public void IncrementCopper() {
         copperCount++;
     }
 
-    public void IncrementGold()
-    {
+    public void IncrementGold() {
         goldCount++;
     }
 
-    public void IncrementSteel()
-    {
+    public void IncrementSteel() {
         steelCount++;
     }
 
-    public void IncrementElectronic()
-    {
+    public void IncrementElectronic() {
         electronicCount++;
+    }
+
+    public bool BuyAk47() {
+        if (copperCount >= 1) {
+            copperCount -= 1;
+
+            hasAk = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool BuyShotgun() {
+        if (steelCount >= 1) {
+            steelCount -= 1;
+
+            hasShotgun = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool BuyRocketLauncher() {
+        if (electronicCount >= 1) {
+            electronicCount -= 1;
+
+            hasRocketLauncher = true;
+            return true;
+        }
+
+        return false;
     }
 }

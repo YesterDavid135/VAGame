@@ -469,7 +469,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11040726}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyShotgun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &11040726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,7 +3594,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d2378c1e9b4154b8ef6afe89eef150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 505219507}
 --- !u!114 &505219507 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -5445,7 +5456,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d2378c1e9b4154b8ef6afe89eef150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 719472486}
 --- !u!1 &721086001
 GameObject:
   m_ObjectHideFlags: 0
@@ -7024,7 +7034,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 921653057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyRocketLauncher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &921653057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10846,7 +10868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee293f85a55cf1e4e8797e1025320cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1403317260}
 --- !u!114 &1403317260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -12188,7 +12209,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c2907e31d95e42ab37239c150afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1450683447}
 --- !u!1 &1455130636
 GameObject:
   m_ObjectHideFlags: 0
@@ -14458,6 +14478,7 @@ GameObject:
   - component: {fileID: 1651058422}
   - component: {fileID: 1651058424}
   - component: {fileID: 1651058423}
+  - component: {fileID: 1651058425}
   m_Layer: 11
   m_Name: RessourceShopUI
   m_TagString: Untagged
@@ -14528,6 +14549,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651058421}
   m_CullTransparentMesh: 1
+--- !u!114 &1651058425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651058421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244b66e8d1824053982b88281338974b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3505204973920527063}
+  akBuyButton: {fileID: 882010747}
+  shotgunBuyButton: {fileID: 747282248}
+  rocketLauncherBuyButton: {fileID: 1699657720}
 --- !u!1 &1652345035
 GameObject:
   m_ObjectHideFlags: 0
@@ -16272,7 +16309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee293f85a55cf1e4e8797e1025320cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1787721219}
 --- !u!1 &1790416554
 GameObject:
   m_ObjectHideFlags: 0
@@ -16689,7 +16725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c2907e31d95e42ab37239c150afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1808198504}
 --- !u!114 &1808198504 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -16783,7 +16818,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1814866275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyAk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1814866275
 MonoBehaviour:
   m_ObjectHideFlags: 0
