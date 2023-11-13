@@ -10,7 +10,8 @@ public class Magnet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Copper") ||
             collision.gameObject.CompareTag("Gold") ||
-            collision.gameObject.CompareTag("Steel"))
+            collision.gameObject.CompareTag("Steel") ||
+            collision.gameObject.CompareTag("Electronic"))
         {
             ICollectible item = collision.gameObject.GetComponent<ICollectible>();
             if (item != null)
