@@ -202,22 +202,6 @@ public class PlayerController : MonoBehaviour {
             case "Bullet":
                 TakeDamage(1);
                 break;
-            case "Copper":
-                other.gameObject.GetComponent<Copper>().Collect();
-                copperCount++;
-                break;
-            case "Gold":
-                other.gameObject.GetComponent<Gold>().Collect();
-                goldCount++;
-                break;
-            case "Electronic":
-                other.gameObject.GetComponent<Electronics>().Collect();
-                electronicCount++;
-                break;
-            case "Steel":
-                other.gameObject.GetComponent<Steel>().Collect();
-                steelCount++;
-                break;
         }
     }
 
@@ -284,5 +268,25 @@ public class PlayerController : MonoBehaviour {
         }
 
         heartImage.fillAmount = 1.0f;
+    }
+
+    public void IncrementCopper()
+    {
+        copperCount++;
+    }
+
+    public void IncrementGold()
+    {
+        goldCount++;
+    }
+
+    public void IncrementSteel()
+    {
+        steelCount++;
+    }
+
+    public void IncrementElectronic()
+    {
+        electronicCount++;
     }
 }
