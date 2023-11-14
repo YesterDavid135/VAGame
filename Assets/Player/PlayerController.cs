@@ -43,18 +43,20 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
 
-    [Header("Dash Settings")] [SerializeField]
-    public float dashSpeed = 10;
-
+    [Header("Dash Settings")] 
+    [SerializeField] public Image dashImage;
+    [SerializeField] public float dashSpeed = 10;
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
     private bool canDash = true;
+    private Coroutine cooldownCoroutineDash;
 
-    [Header("Heal Settings")] public float healAmount = 25.0f;
-    public Image heartImage;
-    public float healCooldown = 20.0f;
+    [Header("Heal Settings")]
+    [SerializeField] public float healAmount = 25.0f;
+    [SerializeField] public Image heartImage;
+    [SerializeField] public float healCooldown = 20.0f;
     private float lastHealTime;
-    private Coroutine cooldownCoroutine;
+    private Coroutine cooldownCoroutineHeal;
 
     [Header("Item Counts")] public int copperCount = 0;
     public int steelCount = 0;
@@ -109,8 +111,9 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate() {
         ProcessInputs();
         Move();
-        if (timeBetweenHeal <= 0 || true) {
-            if (health < maxHealth - naturalRegenPerSec) {
+        if (timeBetweenHeal <= 0) {
+            if (health < maxHealth - naturalRegenPerSec)
+            {
                 health += naturalRegenPerSec;
                 Healthbar.UpdateHealthBar(health, maxHealth);
             }
@@ -194,6 +197,11 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator Dash() {
         canDash = false;
         moveSpeed += dashSpeed;
+        if (cooldownCoroutineDash != null)
+        {
+            StopCoroutine(cooldownCoroutineDash);
+        }
+        cooldownCoroutineDash = StartCoroutine(CooldownFillDash());
         yield return new WaitForSeconds(dashDuration);
         moveSpeed -= dashSpeed;
         yield return new WaitForSeconds(dashCooldown);
@@ -247,11 +255,11 @@ public class PlayerController : MonoBehaviour {
         health = Mathf.Min(health, maxHealth);
         Healthbar.UpdateHealthBar(health, maxHealth);
         lastHealTime = Time.time;
-        if (cooldownCoroutine != null) {
-            StopCoroutine(cooldownCoroutine);
+        if (cooldownCoroutineHeal != null)
+        {
+            StopCoroutine(cooldownCoroutineHeal);
         }
-
-        cooldownCoroutine = StartCoroutine(CooldownFill());
+        cooldownCoroutineHeal = StartCoroutine(CooldownFillHeal());
     }
 
     void UpdateHeartFill() {
@@ -260,7 +268,8 @@ public class PlayerController : MonoBehaviour {
         heartImage.fillAmount = fillAmount;
     }
 
-    IEnumerator CooldownFill() {
+    IEnumerator CooldownFillHeal()
+    {
         float startTime = Time.time;
         float endTime = startTime + healCooldown;
 
@@ -272,6 +281,20 @@ public class PlayerController : MonoBehaviour {
         }
 
         heartImage.fillAmount = 1.0f;
+    }
+    IEnumerator CooldownFillDash()
+    {
+        float startTime = Time.time;
+        float endTime = startTime + dashCooldown;
+
+        while (Time.time < endTime)
+        {
+            float elapsed = Time.time - startTime;
+            float progress = elapsed / dashCooldown;
+            dashImage.fillAmount = Mathf.Lerp(0.0f, 1.0f, progress);
+            yield return null;
+        }
+        dashImage.fillAmount = 1.0f;
     }
 
     public void IncrementCopper() {
