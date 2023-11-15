@@ -1118,6 +1118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 78060093}
   fireForce: 30
+  damage: 4
+  doubleShot: 0
   fireRate: 0.1
 --- !u!4 &78060093 stripped
 Transform:
@@ -6868,7 +6870,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &909535282
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14716,6 +14718,10 @@ MonoBehaviour:
   akBuyButton: {fileID: 882010747}
   shotgunBuyButton: {fileID: 747282248}
   rocketLauncherBuyButton: {fileID: 1699657720}
+  akBuyPrice: 5
+  akSpeedUpgradePrice: 10
+  akDamageUpgradePrice: 10
+  akDoubleshotUpgradePrice: 10
 --- !u!1 &1652345035
 GameObject:
   m_ObjectHideFlags: 0
