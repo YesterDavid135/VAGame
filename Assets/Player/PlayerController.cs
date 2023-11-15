@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Weapons;
+using Weapons.Ak47;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Settings")] public Camera sceneCamera;
@@ -43,16 +44,18 @@ public class PlayerController : MonoBehaviour {
 
     [SerializeField] private int currentExperience, maxExperience, currentLevel;
 
-    [Header("Dash Settings")] 
-    [SerializeField] public Image dashImage;
+    [Header("Dash Settings")] [SerializeField]
+    public Image dashImage;
+
     [SerializeField] public float dashSpeed = 10;
     [SerializeField] public float dashDuration = 1;
     [SerializeField] public float dashCooldown = 1;
     private bool canDash = true;
     private Coroutine cooldownCoroutineDash;
 
-    [Header("Heal Settings")]
-    [SerializeField] public float healAmount = 25.0f;
+    [Header("Heal Settings")] [SerializeField]
+    public float healAmount = 25.0f;
+
     [SerializeField] public Image heartImage;
     [SerializeField] public float healCooldown = 20.0f;
     private float lastHealTime;
@@ -112,8 +115,7 @@ public class PlayerController : MonoBehaviour {
         ProcessInputs();
         Move();
         if (timeBetweenHeal <= 0) {
-            if (health < maxHealth - naturalRegenPerSec)
-            {
+            if (health < maxHealth - naturalRegenPerSec) {
                 health += naturalRegenPerSec;
                 Healthbar.UpdateHealthBar(health, maxHealth);
             }
@@ -197,10 +199,10 @@ public class PlayerController : MonoBehaviour {
     private IEnumerator Dash() {
         canDash = false;
         moveSpeed += dashSpeed;
-        if (cooldownCoroutineDash != null)
-        {
+        if (cooldownCoroutineDash != null) {
             StopCoroutine(cooldownCoroutineDash);
         }
+
         cooldownCoroutineDash = StartCoroutine(CooldownFillDash());
         yield return new WaitForSeconds(dashDuration);
         moveSpeed -= dashSpeed;
@@ -255,10 +257,10 @@ public class PlayerController : MonoBehaviour {
         health = Mathf.Min(health, maxHealth);
         Healthbar.UpdateHealthBar(health, maxHealth);
         lastHealTime = Time.time;
-        if (cooldownCoroutineHeal != null)
-        {
+        if (cooldownCoroutineHeal != null) {
             StopCoroutine(cooldownCoroutineHeal);
         }
+
         cooldownCoroutineHeal = StartCoroutine(CooldownFillHeal());
     }
 
@@ -268,8 +270,7 @@ public class PlayerController : MonoBehaviour {
         heartImage.fillAmount = fillAmount;
     }
 
-    IEnumerator CooldownFillHeal()
-    {
+    IEnumerator CooldownFillHeal() {
         float startTime = Time.time;
         float endTime = startTime + healCooldown;
 
@@ -282,18 +283,18 @@ public class PlayerController : MonoBehaviour {
 
         heartImage.fillAmount = 1.0f;
     }
-    IEnumerator CooldownFillDash()
-    {
+
+    IEnumerator CooldownFillDash() {
         float startTime = Time.time;
         float endTime = startTime + dashCooldown;
 
-        while (Time.time < endTime)
-        {
+        while (Time.time < endTime) {
             float elapsed = Time.time - startTime;
             float progress = elapsed / dashCooldown;
             dashImage.fillAmount = Mathf.Lerp(0.0f, 1.0f, progress);
             yield return null;
         }
+
         dashImage.fillAmount = 1.0f;
     }
 
@@ -341,6 +342,38 @@ public class PlayerController : MonoBehaviour {
 
             hasRocketLauncher = true;
             return true;
+        }
+
+        return false;
+    }
+
+    public bool UpgradeAk(String attribute, float price) {
+        Ak47 ak = ak47.GetComponent<Ak47>();
+        switch (attribute) {
+            case "Speed":
+                if (steelCount >= price) {
+                    steelCount -= (int)price;
+                    ak.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Damage":
+                if (copperCount >= price) {
+                    copperCount -= (int)price;
+                    ak.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Doubleshot":
+                if (goldCount >= price) {
+                    goldCount -= (int)price;
+                    ak.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
         }
 
         return false;
