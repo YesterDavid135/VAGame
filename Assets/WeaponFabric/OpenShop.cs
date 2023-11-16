@@ -13,6 +13,7 @@ public class WeaponFabric : MonoBehaviour
         {
             // Open the shop interface
             shopInterface.SetActive(true);
+            Time.timeScale = 0;
         }
     }
     
@@ -20,5 +21,6 @@ public class WeaponFabric : MonoBehaviour
     {
         // Close the shop interface
         shopInterface.SetActive(false);
+        Time.timeScale = 1;
     }
 }
