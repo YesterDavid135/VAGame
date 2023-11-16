@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Weapons;
 using Weapons.Ak47;
+using Weapons.RocketLauncher;
+using Weapons.Shotgun;
 
 public class PlayerController : MonoBehaviour {
     [Header("Player Settings")] public Camera sceneCamera;
@@ -370,6 +372,70 @@ public class PlayerController : MonoBehaviour {
                 if (goldCount >= price) {
                     goldCount -= (int)price;
                     ak.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+        }
+
+        return false;
+    }
+
+    public bool UpgradeShotgun(String attribute, float price) {
+        Shotgun shotgun2 = shotgun.GetComponent<Shotgun>();
+        switch (attribute) {
+            case "Speed":
+                if (steelCount >= price) {
+                    steelCount -= (int)price;
+                    shotgun2.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Damage":
+                if (copperCount >= price) {
+                    copperCount -= (int)price;
+                    shotgun2.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Scatter":
+                if (goldCount >= price) {
+                    goldCount -= (int)price;
+                    shotgun2.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+        }
+
+        return false;
+    }
+
+    public bool UpgradeRocketLauncher(String attribute, float price) {
+        RocketLauncher rocket = rocketlauncher.GetComponent<RocketLauncher>();
+        switch (attribute) {
+            case "Speed":
+                if (steelCount >= price) {
+                    steelCount -= (int)price;
+                    rocket.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Damage":
+                if (copperCount >= price) {
+                    copperCount -= (int)price;
+                    rocket.Upgrade(attribute);
+                    return true;
+                }
+
+                break;
+            case "Explosion":
+                if (goldCount >= price) {
+                    goldCount -= (int)price;
+                    rocket.Upgrade(attribute);
                     return true;
                 }
 

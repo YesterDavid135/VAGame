@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Weapons;
 
@@ -5,6 +6,8 @@ namespace Weapons.RocketLauncher {
     public class RocketLauncher : MonoBehaviour, IWeapon {
         public Transform firePoint;
         public float fireForce = 5;
+        public float damage = 5;
+        public float explosionRadius = 2f;
 
         public float fireRate = 4f;
         private bool canFire = true; // Add this variable to control the cooldown
@@ -32,8 +35,10 @@ namespace Weapons.RocketLauncher {
             projectile.transform.rotation = firePoint.rotation;
             Bullet bulletComponent = projectile.GetComponent<Bullet>();
             if (bulletComponent != null) {
-                bulletComponent.damage = 5; // Set the desired damage value
+                bulletComponent.damage = (int)damage; // Set the desired damage value
                 bulletComponent.isExplosive = true; // Set whether it's explosive or not
+                bulletComponent.explosionDamage = (int)damage;
+                bulletComponent.explosionRadius = (int)explosionRadius;
             }
 
             projectile.SetActive(true);
@@ -48,6 +53,23 @@ namespace Weapons.RocketLauncher {
 
         public string GetWeaponName() {
             return "RocketLauncher";
+        }
+
+        public void Upgrade(String attribute) {
+            switch (attribute) {
+                case "Speed":
+
+                    fireRate *= 0.99f; //1%
+                    break;
+                case "Damage":
+
+                    damage += 0.5f;
+
+                    break;
+                case "Explosion":
+                    explosionRadius *= 1.1f;
+                    break;
+            }
         }
     }
 }

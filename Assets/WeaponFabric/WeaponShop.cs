@@ -14,6 +14,16 @@ public class WeaponShop : MonoBehaviour {
     public float akSpeedUpgradePrice = 10;
     public float akDamageUpgradePrice = 10;
     public float akDoubleshotUpgradePrice = 10;
+    
+    [Header("ShotgunPrices")] public float shotgunBuyPrice = 5;
+    public float shotgunSpeedUpgradePrice = 10;
+    public float shotgunDamageUpgradePrice = 10;
+    public float shotgunDoubleshotUpgradePrice = 10;
+    
+    [Header("RocketLauncherPrices")] public float rocketLauncherBuyPrice = 5;
+    public float rocketLauncherSpeedUpgradePrice = 10;
+    public float rocketLauncherDamageUpgradePrice = 10;
+    public float rocketLauncherDoubleshotUpgradePrice = 10;
 
 
     public void BuyAk() {
@@ -57,6 +67,63 @@ public class WeaponShop : MonoBehaviour {
                 if (player.UpgradeAk(text.name, price)) {
                     akDoubleshotUpgradePrice *= 1.2f;
                     text.text = "Upgrade for " + akDoubleshotUpgradePrice;
+                }
+                break;
+        }
+
+    }
+
+    public void UpgradeShotgun(TextMeshProUGUI text) {
+        float price;
+
+        switch (text.name) {
+            case "Speed":
+                price = shotgunSpeedUpgradePrice;
+                if (player.UpgradeShotgun(text.name, price)) {
+                    shotgunSpeedUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + shotgunSpeedUpgradePrice;
+                }
+                break;
+            case "Damage":
+                price = shotgunDamageUpgradePrice;
+                if (player.UpgradeShotgun(text.name, price)) {
+                    shotgunDamageUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + shotgunDamageUpgradePrice;
+                }
+                break;
+            case "Scatter":
+                price = shotgunDoubleshotUpgradePrice;
+                if (player.UpgradeShotgun(text.name, price)) {
+                    shotgunDoubleshotUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + shotgunDoubleshotUpgradePrice;
+                }
+                break;
+        }
+
+    }
+    public void UpgradeRocketLauncher(TextMeshProUGUI text) {
+        float price;
+
+        switch (text.name) {
+            case "Speed":
+                price = rocketLauncherSpeedUpgradePrice;
+                if (player.UpgradeRocketLauncher(text.name, price)) {
+                    rocketLauncherSpeedUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + rocketLauncherSpeedUpgradePrice;
+                }
+                break;
+            case "Damage":
+                price = rocketLauncherDamageUpgradePrice;
+                if (player.UpgradeRocketLauncher(text.name, price)) {
+                    rocketLauncherDamageUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + rocketLauncherDamageUpgradePrice;
+                }
+                break;
+            case "Explosion":
+                price = rocketLauncherDoubleshotUpgradePrice;
+                if (player.UpgradeRocketLauncher(text.name, price)) {
+                    rocketLauncherDoubleshotUpgradePrice *= 1.2f;
+                    text.text = "Upgrade for " + rocketLauncherDoubleshotUpgradePrice;
                 }
                 break;
         }
