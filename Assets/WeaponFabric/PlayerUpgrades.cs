@@ -59,6 +59,8 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.maxHealth += 5;
             currentHealth.text = $"({playerValues.maxHealth})";
         }
+        pointsText.text = "U-Points: " + playerValues.lvlPoints.ToString();
+        availablePointsDisplay.text = "Available Points:"+playerValues.lvlPoints.ToString();
     }
 
     public void BuySpeedUpgrade()
@@ -72,6 +74,8 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.moveSpeed += (float) 0.75;
             currentSpeed.text = $"({playerValues.moveSpeed})";
         }
+        pointsText.text = "U-Points: " + playerValues.lvlPoints.ToString();
+        availablePointsDisplay.text = "Available Points:"+playerValues.lvlPoints.ToString();
     }
 
     public void BuyRegenerationUpgrade()
@@ -85,6 +89,8 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.naturalRegenPerSec += (float) 0.25;
             currentRegen.text = $"({playerValues.naturalRegenPerSec})";
         }
+        pointsText.text = "U-Points: " + playerValues.lvlPoints.ToString();
+        availablePointsDisplay.text = "Available Points:"+playerValues.lvlPoints.ToString();
     }
 
     public void BuyXpMultiplierUpgrade()
@@ -98,5 +104,7 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.xpMultiplier += (float)1.5;
             currentXpMultiplier.text = $"({playerValues.xpMultiplier})";
         }
+        pointsText.text = "U-Points: " + playerValues.lvlPoints.ToString();
+        availablePointsDisplay.text = "Available Points:"+playerValues.lvlPoints.ToString();
     }
 }

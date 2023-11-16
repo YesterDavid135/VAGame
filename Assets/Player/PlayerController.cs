@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
+        levelPoints.text = "U-Points: " + lvlPoints;
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
             key1PistolOrAK47 = true;
         }
