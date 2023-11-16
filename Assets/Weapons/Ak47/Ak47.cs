@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Weapons;
 
@@ -5,6 +6,8 @@ namespace Weapons.Ak47 {
     public class Ak47 : MonoBehaviour, IWeapon {
         public Transform firePoint;
         public float fireForce;
+        public float damage = 4;
+        public float doubleShot;
 
         public float fireRate = 0.1f;
         private bool canFire = true; // Add this variable to control the cooldown
@@ -33,7 +36,7 @@ namespace Weapons.Ak47 {
 
             Bullet bulletComponent = projectile.GetComponent<Bullet>();
             if (bulletComponent != null) {
-                bulletComponent.damage = 4; // Set the desired damage value
+                bulletComponent.damage = (int)damage; // Set the desired damage value
                 bulletComponent.isExplosive = false; // Set whether it's explosive or not
             }
 
@@ -49,6 +52,23 @@ namespace Weapons.Ak47 {
 
         public string GetWeaponName() {
             return "Ak47";
+        }
+
+        public void Upgrade(String attribute) {
+            switch (attribute) {
+                case "Speed":
+
+                    fireRate *= 0.99f; //1%
+                    break;
+                case "Damage":
+
+                    damage += 0.5f;
+
+                    break;
+                case "Doubleshot":
+                    doubleShot *= 1.1f;
+                    break;
+            }
         }
     }
 }

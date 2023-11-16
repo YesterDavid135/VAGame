@@ -469,7 +469,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 11040726}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyShotgun
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &11040726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -643,12 +655,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
     - {fileID: 5871490451053750811, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 719472484}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1926085529}
   m_SourcePrefab: {fileID: 100100000, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
 --- !u!4 &32730119 stripped
 Transform:
@@ -878,6 +894,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8734612999354377228, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
   m_PrefabInstance: {fileID: 7811277571798606662}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &46091540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+  m_PrefabInstance: {fileID: 1585557111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &53030705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1097,12 +1118,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 78060093}
   fireForce: 30
+  damage: 4
+  doubleShot: 0
   fireRate: 0.1
 --- !u!4 &78060093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5868688107813400276, guid: fc9bfe55f533c2d4a863049f87743006, type: 3}
   m_PrefabInstance: {fileID: 78060089}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &81638356 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+  m_PrefabInstance: {fileID: 7811277571798606662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &81638359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81638356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1808198504}
+  collectible: Gold
 --- !u!1 &82895865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1115,7 +1158,7 @@ GameObject:
   - component: {fileID: 82895868}
   - component: {fileID: 82895867}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Scatter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2051,16 +2094,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeAk
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 728015984}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: speed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &157313873
@@ -2896,7 +2939,7 @@ GameObject:
   - component: {fileID: 330266037}
   - component: {fileID: 330266036}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3157,6 +3200,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360142427}
   m_CullTransparentMesh: 1
+--- !u!1 &383503173 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+  m_PrefabInstance: {fileID: 8181326556054414915}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &383503176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383503173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 505219507}
+  collectible: Copper
 --- !u!1 &386138026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5033364686682593615, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -3290,6 +3353,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1779498298}
   m_SourcePrefab: {fileID: 100100000, guid: 750bf1563640af74191b497a2f3c9d86, type: 3}
+--- !u!1 &459794493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+  m_PrefabInstance: {fileID: 1498263240}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &465435132
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3528,7 +3596,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d2378c1e9b4154b8ef6afe89eef150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 505219507}
 --- !u!114 &505219507 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -4032,7 +4099,7 @@ GameObject:
   - component: {fileID: 564837364}
   - component: {fileID: 564837363}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5391,7 +5458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d2378c1e9b4154b8ef6afe89eef150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 719472486}
 --- !u!1 &721086001
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,13 +5541,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeShotgun
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1507152412}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5537,7 +5603,7 @@ GameObject:
   - component: {fileID: 728015985}
   - component: {fileID: 728015984}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6134,7 +6200,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chance for extra Shrapnel +1%
+  m_text: Chance for extra Bullet +1%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6379,6 +6445,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopInterface: {fileID: 1395581712}
+--- !u!1 &862738125 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+  m_PrefabInstance: {fileID: 4999023858274501005}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &877455694
 GameObject:
   m_ObjectHideFlags: 0
@@ -6965,7 +7036,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 921653057}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyRocketLauncher
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &921653057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7952,6 +8035,7 @@ MonoBehaviour:
   numberOfBullets: 10
   spreadAngle: 20
   fireRate: 1
+  damage: 5
 --- !u!1 &1064890821
 GameObject:
   m_ObjectHideFlags: 0
@@ -9206,13 +9290,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeRocketLauncher
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1447675217}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -10217,7 +10301,7 @@ GameObject:
   - component: {fileID: 1359969952}
   - component: {fileID: 1359969951}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10523,7 +10607,7 @@ GameObject:
   - component: {fileID: 1375002246}
   - component: {fileID: 1375002245}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10938,7 +11022,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee293f85a55cf1e4e8797e1025320cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1403317260}
 --- !u!114 &1403317260 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -11084,6 +11167,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404350024}
   m_CullTransparentMesh: 1
+--- !u!1 &1404352944 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+  m_PrefabInstance: {fileID: 2087313421}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1409668935
 GameObject:
   m_ObjectHideFlags: 0
@@ -11301,13 +11389,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeShotgun
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1359969951}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11840,7 +11928,7 @@ GameObject:
   - component: {fileID: 1447675218}
   - component: {fileID: 1447675217}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12275,7 +12363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c2907e31d95e42ab37239c150afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1450683447}
 --- !u!1 &1455130636
 GameObject:
   m_ObjectHideFlags: 0
@@ -12511,13 +12598,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeShotgun
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 82895867}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12868,18 +12955,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
     - {fileID: 7140368239191666617, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+    - {fileID: 7089233513144560277, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1450683445}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1498263244}
   m_SourcePrefab: {fileID: 100100000, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
 --- !u!4 &1498263241 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734612999354377228, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
   m_PrefabInstance: {fileID: 1498263240}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1498263244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459794493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1450683447}
+  collectible: Gold
 --- !u!1 &1507152410
 GameObject:
   m_ObjectHideFlags: 0
@@ -12892,7 +12998,7 @@ GameObject:
   - component: {fileID: 1507152413}
   - component: {fileID: 1507152412}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13638,6 +13744,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8734612999354377228, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
   m_PrefabInstance: {fileID: 4999023858274501005}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1582866755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 862738125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1922926829}
+  collectible: Steel
 --- !u!1001 &1585557111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13729,18 +13850,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: df263517b52e5b5498761e8da4710b37, type: 3}
     - {fileID: -8229442856691495225, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+    - {fileID: 5438293583279030614, guid: df263517b52e5b5498761e8da4710b37, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: df263517b52e5b5498761e8da4710b37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1787721217}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1585557115}
   m_SourcePrefab: {fileID: 100100000, guid: df263517b52e5b5498761e8da4710b37, type: 3}
 --- !u!4 &1585557112 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734612999354377228, guid: df263517b52e5b5498761e8da4710b37, type: 3}
   m_PrefabInstance: {fileID: 1585557111}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1585557115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46091540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1787721219}
+  collectible: Electronic
 --- !u!1001 &1599716824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14431,13 +14571,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeRocketLauncher
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1375002245}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14492,6 +14632,7 @@ GameObject:
   - component: {fileID: 1651058422}
   - component: {fileID: 1651058424}
   - component: {fileID: 1651058423}
+  - component: {fileID: 1651058425}
   m_Layer: 11
   m_Name: RessourceShopUI
   m_TagString: Untagged
@@ -14562,6 +14703,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1651058421}
   m_CullTransparentMesh: 1
+--- !u!114 &1651058425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651058421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 244b66e8d1824053982b88281338974b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 3505204973920527063}
+  akBuyButton: {fileID: 882010747}
+  shotgunBuyButton: {fileID: 747282248}
+  rocketLauncherBuyButton: {fileID: 1699657720}
+  akBuyPrice: 5
+  akSpeedUpgradePrice: 10
+  akDamageUpgradePrice: 10
+  akDoubleshotUpgradePrice: 10
+  shotgunBuyPrice: 5
+  shotgunSpeedUpgradePrice: 10
+  shotgunDamageUpgradePrice: 10
+  shotgunDoubleshotUpgradePrice: 10
+  rocketLauncherBuyPrice: 5
+  rocketLauncherSpeedUpgradePrice: 10
+  rocketLauncherDamageUpgradePrice: 10
+  rocketLauncherDoubleshotUpgradePrice: 10
 --- !u!1 &1652345035
 GameObject:
   m_ObjectHideFlags: 0
@@ -14951,13 +15120,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeRocketLauncher
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 330266036}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15314,7 +15483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9109c46f46314f64c9c24f177c5080cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1717576606}
 --- !u!1 &1737421227
 GameObject:
   m_ObjectHideFlags: 0
@@ -15848,13 +16016,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeAk
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 2084687853}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -16308,7 +16476,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee293f85a55cf1e4e8797e1025320cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1787721219}
 --- !u!1 &1790416554
 GameObject:
   m_ObjectHideFlags: 0
@@ -16463,6 +16630,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 997686812678109376, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
   m_PrefabInstance: {fileID: 1795226111}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1796432433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+  m_PrefabInstance: {fileID: 639580382570212736}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1796432436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796432433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1403317260}
+  collectible: Electronic
 --- !u!1 &1804313354
 GameObject:
   m_ObjectHideFlags: 0
@@ -16705,7 +16892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 073c2907e31d95e42ab37239c150afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1808198504}
 --- !u!114 &1808198504 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -16799,7 +16985,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1814866275}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: BuyAk
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1814866275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17241,7 +17439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Shrapnel
+  m_text: Scatter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17532,7 +17730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9109c46f46314f64c9c24f177c5080cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1922926829}
 --- !u!114 &1922926829 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2865729749822216326, guid: 7b21640723967eb4880e94a00b8db3a3, type: 3}
@@ -17544,6 +17741,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1926085526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+  m_PrefabInstance: {fileID: 32730118}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1926085529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926085526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 719472486}
+  collectible: Copper
 --- !u!1 &1936745366
 GameObject:
   m_ObjectHideFlags: 0
@@ -18447,13 +18664,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerUpgrades, Assembly-CSharp
-        m_MethodName: BuySpeedUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1651058425}
+        m_TargetAssemblyTypeName: WeaponShop, Assembly-CSharp
+        m_MethodName: UpgradeAk
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 564837363}
+          m_ObjectArgumentAssemblyTypeName: TMPro.TextMeshProUGUI, Unity.TextMeshPro
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18993,7 +19210,7 @@ GameObject:
   - component: {fileID: 2084687854}
   - component: {fileID: 2084687853}
   m_Layer: 11
-  m_Name: Text (TMP)
+  m_Name: Doubleshot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19206,18 +19423,37 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
     - {fileID: -8221046445792950437, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+    - {fileID: -1566417542341272604, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1717576604}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2087313425}
   m_SourcePrefab: {fileID: 100100000, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
 --- !u!4 &2087313422 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8734612999354377228, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
   m_PrefabInstance: {fileID: 2087313421}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2087313425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404352944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff88de68cd9df9b4197071eeabb2a79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerValues: {fileID: 3505204973920527063}
+  countText: {fileID: 1717576606}
+  collectible: Steel
 --- !u!1 &2144369813
 GameObject:
   m_ObjectHideFlags: 0
@@ -19456,12 +19692,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: df263517b52e5b5498761e8da4710b37, type: 3}
     - {fileID: -8229442856691495225, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+    - {fileID: 5438293583279030614, guid: df263517b52e5b5498761e8da4710b37, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: df263517b52e5b5498761e8da4710b37, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1403317258}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: df263517b52e5b5498761e8da4710b37, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1796432436}
   m_SourcePrefab: {fileID: 100100000, guid: df263517b52e5b5498761e8da4710b37, type: 3}
 --- !u!4 &3505204973920527061 stripped
 Transform:
@@ -19581,12 +19821,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
     - {fileID: -8221046445792950437, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+    - {fileID: -1566417542341272604, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 174029901}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1582866755}
   m_SourcePrefab: {fileID: 100100000, guid: 407eb16f6b2429444b841d4cf7b3fd28, type: 3}
 --- !u!1001 &5954094796590902339
 PrefabInstance:
@@ -19701,6 +19945,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 530312330242030859, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 3505204973920527063}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: ak47
       value: 
@@ -19828,6 +20076,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 874190786356703018, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+    - {fileID: 5427060408940333808, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6407849244149988030, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       insertIndex: 0
@@ -19937,12 +20186,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
     - {fileID: 7140368239191666617, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+    - {fileID: 7089233513144560277, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 631172695}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 81638359}
   m_SourcePrefab: {fileID: 100100000, guid: dfeaef422e59ab14a80a7514cfcd25d0, type: 3}
 --- !u!1001 &7957949323943124141
 PrefabInstance:
@@ -20111,12 +20364,16 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2259817509237740417, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
     - {fileID: 5871490451053750811, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8734612999354377228, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 505219505}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7703640054039545244, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 383503176}
   m_SourcePrefab: {fileID: 100100000, guid: 352dcc29b33a9844bb863023eddf1ac9, type: 3}
 --- !u!224 &8189616182494637071 stripped
 RectTransform:

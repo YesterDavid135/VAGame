@@ -6,9 +6,10 @@ namespace Weapons.Shotgun {
     public class Shotgun : MonoBehaviour, IWeapon {
         public Transform firePoint;
         public float fireForce = 20;
-        public int numberOfBullets = 7;
+        public float numberOfBullets = 7;
         public float spreadAngle = 10;
         public float fireRate = 0.5f;
+        public float damage = 5f;
 
         private bool canFire = true; // Add this variable to control the cooldown
         private float cooldownTimer; // Set the cooldown time
@@ -34,7 +35,7 @@ namespace Weapons.Shotgun {
                 if (projectile == null) continue;
 
                 // Calculate the spread angle for this bullet
-                float bulletAngle = spreadAngle * ((i + 0.5f) / numberOfBullets - 0.5f);
+                float bulletAngle = spreadAngle * ((i + 0.5f) / (int)numberOfBullets - 0.5f);
 
                 // Calculate the rotation based on the spread angle
                 Quaternion rotation = Quaternion.Euler(0, 0, bulletAngle) * firePoint.rotation;
@@ -46,7 +47,7 @@ namespace Weapons.Shotgun {
 
                 Bullet bulletComponent = projectile.GetComponent<Bullet>();
                 if (bulletComponent != null) {
-                    bulletComponent.damage = 5; // Set the desired damage value
+                    bulletComponent.damage = (int)damage; // Set the desired damage value
                     bulletComponent.isExplosive = false; // Set whether it's explosive or not
                 }
 
@@ -66,6 +67,23 @@ namespace Weapons.Shotgun {
 
         public string GetWeaponName() {
             return "Shotgun";
+        }
+
+        public void Upgrade(String attribute) {
+            switch (attribute) {
+                case "Speed":
+
+                    fireRate *= 0.99f; //1%
+                    break;
+                case "Damage":
+
+                    damage += 0.5f;
+
+                    break;
+                case "Scatter":
+                    numberOfBullets *= 1.1f;
+                    break;
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8221046445792950437}
   m_Layer: 10
   m_Name: Steel
-  m_TagString: Untagged
+  m_TagString: Steel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,11 +6,18 @@ using UnityEngine;
 
 public class Magnet : MonoBehaviour
 {
-  private void OnTriggerStay2D(Collider2D collision)
-  {
-    if (collision.gameObject.TryGetComponent<ICollectible>(out ICollectible item))
+    private void OnTriggerStay2D(Collider2D collision)
     {
-      item.SetTarget(transform.parent.position);
+        if (collision.gameObject.CompareTag("Copper") ||
+            collision.gameObject.CompareTag("Gold") ||
+            collision.gameObject.CompareTag("Steel") ||
+            collision.gameObject.CompareTag("Electronic"))
+        {
+            ICollectible item = collision.gameObject.GetComponent<ICollectible>();
+            if (item != null)
+            {
+                item.SetTarget(transform.parent.position);
+            }
+        }
     }
-  }
 }
