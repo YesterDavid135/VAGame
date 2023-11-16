@@ -24,7 +24,7 @@ public class Buggy : MonoBehaviour, IEnemy
     public float startTimeBetweenDamage;
 
     public Rigidbody2D rb;
-    private int expAmount = 10;
+    private int expAmount = 50;
 
     [Header("Dash Settings")] 
     [SerializeField] public float dashSpeed = 15;

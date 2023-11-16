@@ -23,7 +23,7 @@ public class EnemyRobot : MonoBehaviour, IEnemy {
 
     public Rigidbody2D rb;
 
-    private int expAmount = 10;
+    private int expAmount = 40;
 
     void Start() {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;

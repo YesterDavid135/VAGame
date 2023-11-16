@@ -1368,7 +1368,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: timeToSpawn
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: objectToSpawn
@@ -1572,7 +1572,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: timeToSpawn
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5793756540129474637, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: m_Name
@@ -3123,7 +3123,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +0.1
+  m_text: +0.25
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10212,7 +10212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +1%
+  m_text: +2%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12844,7 +12844,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: timeToSpawn
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: objectToSpawn
@@ -14202,7 +14202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +0.25
+  m_text: +0.75
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16116,7 +16116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3330903364732643948, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: timeToSpawn
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5793756540129474637, guid: d95093ca797c8ff4e8db13d5ea3d496a, type: 3}
       propertyPath: m_Name
@@ -18425,7 +18425,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +0.25
+  m_text: +1.5%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19978,6 +19978,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: goldCount
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: healAmount
       value: 25
       objectReference: {fileID: 0}
@@ -19985,6 +19989,14 @@ PrefabInstance:
       propertyPath: heartImage
       value: 
       objectReference: {fileID: 1741767343}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: steelCount
+      value: 99999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: copperCount
+      value: 99999
+      objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: levelPoints
       value: 
@@ -20013,6 +20025,10 @@ PrefabInstance:
       propertyPath: rocketlauncher
       value: 
       objectReference: {fileID: 427560188}
+    - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
+      propertyPath: electronicCount
+      value: 99999
+      objectReference: {fileID: 0}
     - target: {fileID: 6407849244149988030, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

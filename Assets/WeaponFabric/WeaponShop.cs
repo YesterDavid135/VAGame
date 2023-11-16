@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using Weapons.Ak47;
 
 public class WeaponShop : MonoBehaviour {
     [Header("Player")] public PlayerController player;
@@ -10,21 +11,20 @@ public class WeaponShop : MonoBehaviour {
     public TextMeshProUGUI shotgunBuyButton;
     public TextMeshProUGUI rocketLauncherBuyButton;
 
-    [Header("AkPrices")] public float akBuyPrice = 5;
+    [Header("AkPrices")] public float akBuyPrice = 50;
     public float akSpeedUpgradePrice = 10;
-    public float akDamageUpgradePrice = 10;
-    public float akDoubleshotUpgradePrice = 10;
+    public float akDamageUpgradePrice = 25;
+    public float akDoubleshotUpgradePrice = 50;
     
-    [Header("ShotgunPrices")] public float shotgunBuyPrice = 5;
+    [Header("ShotgunPrices")] public float shotgunBuyPrice = 250;
     public float shotgunSpeedUpgradePrice = 10;
-    public float shotgunDamageUpgradePrice = 10;
-    public float shotgunDoubleshotUpgradePrice = 10;
+    public float shotgunDamageUpgradePrice = 35;
+    public float shotgunDoubleshotUpgradePrice = 150;
     
-    [Header("RocketLauncherPrices")] public float rocketLauncherBuyPrice = 5;
-    public float rocketLauncherSpeedUpgradePrice = 10;
-    public float rocketLauncherDamageUpgradePrice = 10;
-    public float rocketLauncherDoubleshotUpgradePrice = 10;
-
+    [Header("RocketLauncherPrices")] public float rocketLauncherBuyPrice = 450;
+    public float rocketLauncherSpeedUpgradePrice = 15;
+    public float rocketLauncherDamageUpgradePrice = 40;
+    public float rocketLauncherDoubleshotUpgradePrice = 100;
 
     public void BuyAk() {
         if (player.BuyAk47()) {

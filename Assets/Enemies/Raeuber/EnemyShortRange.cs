@@ -24,7 +24,7 @@ public class EnemyShortRange : MonoBehaviour, IEnemy
 
     public Rigidbody2D rb;
 
-    private int expAmount = 10;
+    private int expAmount = 20;
     
     void Start()
     {

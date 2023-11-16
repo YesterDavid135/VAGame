@@ -1,6 +1,8 @@
 using System;
+using Unity.Mathematics;
 using UnityEngine;
 using Weapons;
+using Random = Unity.Mathematics.Random;
 
 namespace Weapons.Ak47 {
     public class Ak47 : MonoBehaviour, IWeapon {
@@ -8,7 +10,7 @@ namespace Weapons.Ak47 {
         public float fireForce;
         public float damage = 4;
         public float doubleShot;
-
+        private Random rand = new Random(34);
         public float fireRate = 0.1f;
         private bool canFire = true; // Add this variable to control the cooldown
         private float cooldownTimer; // Set the cooldown time
@@ -25,7 +27,8 @@ namespace Weapons.Ak47 {
             }
         }
 
-        public void Fire(int layer) {
+        public void Fire(int layer)
+        {
             if (!canFire) return;
 
             GameObject projectile = ObjectPooler.current.GetPooledObject();
@@ -43,6 +46,25 @@ namespace Weapons.Ak47 {
             projectile.SetActive(true);
             projectile.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
 
+            float random = rand.NextFloat(0, 100);
+            if (random < doubleShot)
+            {
+                GameObject projectiles = ObjectPooler.current.GetPooledObject();
+                if (projectile == null) return;
+                projectile.layer = layer;
+                projectile.transform.position = firePoint.position;
+                projectile.transform.rotation = firePoint.rotation;
+
+                Bullet bulletComponent2 = projectile.GetComponent<Bullet>();
+                if (bulletComponent2 != null) {
+                    bulletComponent2.damage = (int)damage; // Set the desired damage value
+                    bulletComponent2.isExplosive = false; // Set whether it's explosive or not
+                }
+
+                projectiles.SetActive(true);
+                projectiles.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);  
+            }
+            
             canFire = false;
         }
 
@@ -66,7 +88,7 @@ namespace Weapons.Ak47 {
 
                     break;
                 case "Doubleshot":
-                    doubleShot *= 1.1f;
+                    doubleShot += 2;
                     break;
             }
         }

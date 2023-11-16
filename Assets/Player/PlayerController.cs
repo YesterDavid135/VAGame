@@ -26,10 +26,9 @@ public class PlayerController : MonoBehaviour {
     private bool hasShotgun;
     private bool hasRocketLauncher;
 
-    private bool key1Pistol = false;
-    private bool key2AK47 = false;
-    private bool key3Shotgun = false;
-    private bool key4RocketLauncher = false;
+    private bool key1PistolOrAK47 = false;
+    private bool key2Shotgun = false;
+    private bool key3RocketLauncher = false;
     private bool mousebutton0Fire = false;
     private bool keyhHeal = false;
 
@@ -89,19 +88,15 @@ public class PlayerController : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            key1Pistol = true;
+            key1PistolOrAK47 = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            key2AK47 = true;
+            key2Shotgun = true; 
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3)) {
-            key3Shotgun = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4)) {
-            key4RocketLauncher = true;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) { 
+            key3RocketLauncher = true;
         }
 
         if (Input.GetKeyDown(KeyCode.H)) {
@@ -134,32 +129,32 @@ public class PlayerController : MonoBehaviour {
     }
 
     void ProcessInputs() {
-        if (key1Pistol) {
+        if (key1PistolOrAK47 && !hasAk) {
             weapon = pistol.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             pistol.SetActive(true);
-            key1Pistol = false;
+            key1PistolOrAK47 = false;
         }
-
-        if (key2AK47 && hasAk) {
+        if (key1PistolOrAK47 && hasAk) {
             weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             ak47.SetActive(true);
-            key2AK47 = false;
+            key1PistolOrAK47 = false;
         }
+       
 
-        if (key3Shotgun && hasShotgun) {
+        if (key2Shotgun && hasShotgun) {
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             shotgun.SetActive(true);
-            key3Shotgun = false;
+            key2Shotgun = false;
         }
 
-        if (key4RocketLauncher && hasRocketLauncher) {
+        if (key3RocketLauncher && hasRocketLauncher) {
             weapon = rocketlauncher.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             rocketlauncher.SetActive(true);
-            key4RocketLauncher = false;
+            key3RocketLauncher = false;
         }
 
         if (mousebutton0Fire && weapon != null) {
@@ -213,7 +208,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log(other.gameObject);
         switch (other.gameObject.tag) {
             case "Bullet":
                 TakeDamage(1);
@@ -317,8 +311,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool BuyAk47() {
-        if (copperCount >= 1) {
-            copperCount -= 1;
+        if (copperCount >= 50) {
+            copperCount -= 50;
 
             hasAk = true;
             return true;
@@ -328,8 +322,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool BuyShotgun() {
-        if (steelCount >= 1) {
-            steelCount -= 1;
+        if (steelCount >= 250) {
+            steelCount -= 250;
 
             hasShotgun = true;
             return true;
@@ -339,8 +333,8 @@ public class PlayerController : MonoBehaviour {
     }
 
     public bool BuyRocketLauncher() {
-        if (electronicCount >= 1) {
-            electronicCount -= 1;
+        if (electronicCount >= 450) {
+            electronicCount -= 450;
 
             hasRocketLauncher = true;
             return true;

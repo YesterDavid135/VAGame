@@ -27,9 +27,9 @@ public class PlayerUpgrades : MonoBehaviour
     
     [Header("Initial Upgrade Prices")]
     public int healthUpgradePrice = 1;
-    public int speedUpgradePrice = 2;
-    public int regenerationUpgradePrice = 3;
-    public int xpMultiplierUpgradePrice = 4;
+    public int speedUpgradePrice = 1;
+    public int regenerationUpgradePrice = 1;
+    public int xpMultiplierUpgradePrice = 1;
 
     
     private void FixedUpdate()
@@ -69,7 +69,7 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.lvlPoints -= speedUpgradePrice;
             speedUpgradePrice++;
             uCostsSpeed.text = "Buy for " + speedUpgradePrice;
-            playerValues.moveSpeed += (float) 0.25;
+            playerValues.moveSpeed += (float) 0.75;
             currentSpeed.text = $"({playerValues.moveSpeed})";
         }
     }
@@ -82,7 +82,7 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.lvlPoints -= regenerationUpgradePrice;
             regenerationUpgradePrice++;
             uCostsRegen.text = "Buy for " + regenerationUpgradePrice;
-            playerValues.naturalRegenPerSec += (float) 0.1;
+            playerValues.naturalRegenPerSec += (float) 0.25;
             currentRegen.text = $"({playerValues.naturalRegenPerSec})";
         }
     }
@@ -95,7 +95,7 @@ public class PlayerUpgrades : MonoBehaviour
             playerValues.lvlPoints -= xpMultiplierUpgradePrice;
             xpMultiplierUpgradePrice++;
             uCostsXpMultiplier.text = "Buy for " + xpMultiplierUpgradePrice;
-            playerValues.xpMultiplier += (float)0.25;
+            playerValues.xpMultiplier += (float)1.5;
             currentXpMultiplier.text = $"({playerValues.xpMultiplier})";
         }
     }
