@@ -11,6 +11,8 @@ using Weapons.RocketLauncher;
 using Weapons.Shotgun;
 
 public class PlayerController : MonoBehaviour {
+    public GameObject pauseInterface;
+
     [Header("Player Settings")] public Camera sceneCamera;
     public float moveSpeed = 5;
     public Rigidbody2D rb;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     private bool key3RocketLauncher = false;
     private bool mousebutton0Fire = false;
     private bool keyhHeal = false;
+    private bool keyPause = false;
 
     private Vector2 moveDirection;
     private Vector2 mousePosition;
@@ -93,10 +96,10 @@ public class PlayerController : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2)) {
-            key2Shotgun = true; 
+            key2Shotgun = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3)) { 
+        if (Input.GetKeyDown(KeyCode.Alpha3)) {
             key3RocketLauncher = true;
         }
 
@@ -106,6 +109,10 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetMouseButton(0)) {
             mousebutton0Fire = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            keyPause = true;
         }
     }
 
@@ -136,13 +143,14 @@ public class PlayerController : MonoBehaviour {
             pistol.SetActive(true);
             key1PistolOrAK47 = false;
         }
+
         if (key1PistolOrAK47 && hasAk) {
             weapon = ak47.GetComponent<IWeapon>(); // Change to the desired weapon type
             SetAllWeaponsInactive();
             ak47.SetActive(true);
             key1PistolOrAK47 = false;
         }
-       
+
 
         if (key2Shotgun && hasShotgun) {
             weapon = shotgun.GetComponent<IWeapon>(); // Change to the desired weapon type
@@ -172,6 +180,12 @@ public class PlayerController : MonoBehaviour {
         }
         else {
             keyhHeal = false;
+        }
+
+        if (keyPause) {
+            pauseInterface.SetActive(true);
+            Time.timeScale = 0;
+            keyPause = false;
         }
 
         if (Input.GetMouseButton(1) && canDash) {
