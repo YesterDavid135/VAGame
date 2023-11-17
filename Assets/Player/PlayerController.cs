@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody2D rb;
     public IWeapon weapon;
     public int lvlPoints = 0;
+    public CircleCollider2D magnetCollider;
+
 
     [Header("Weapon Settings")] public GameObject pistol;
     public GameObject shotgun;
