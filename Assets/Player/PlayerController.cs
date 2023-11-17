@@ -311,9 +311,9 @@ public class PlayerController : MonoBehaviour {
         electronicCount++;
     }
 
-    public bool BuyAk47() {
-        if (copperCount >= 50) {
-            copperCount -= 50;
+    public bool BuyAk47(int price) {
+        if (copperCount >= price) {
+            copperCount -= price;
 
             hasAk = true;
             return true;
@@ -322,9 +322,9 @@ public class PlayerController : MonoBehaviour {
         return false;
     }
 
-    public bool BuyShotgun() {
-        if (steelCount >= 250) {
-            steelCount -= 250;
+    public bool BuyShotgun(int price) {
+        if (steelCount >= price) {
+            steelCount -= price;
 
             hasShotgun = true;
             return true;
@@ -333,9 +333,9 @@ public class PlayerController : MonoBehaviour {
         return false;
     }
 
-    public bool BuyRocketLauncher() {
-        if (electronicCount >= 450) {
-            electronicCount -= 450;
+    public bool BuyRocketLauncher(int price) {
+        if (electronicCount >= price) {
+            electronicCount -= price;
 
             hasRocketLauncher = true;
             return true;
@@ -344,12 +344,12 @@ public class PlayerController : MonoBehaviour {
         return false;
     }
 
-    public bool UpgradeAk(String attribute, float price) {
+    public bool UpgradeAk(String attribute, int price) {
         Ak47 ak = ak47.GetComponent<Ak47>();
         switch (attribute) {
             case "Speed":
                 if (steelCount >= price) {
-                    steelCount -= (int)price;
+                    steelCount -= price;
                     ak.Upgrade(attribute);
                     return true;
                 }
@@ -357,7 +357,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Damage":
                 if (copperCount >= price) {
-                    copperCount -= (int)price;
+                    copperCount -= price;
                     ak.Upgrade(attribute);
                     return true;
                 }
@@ -365,7 +365,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Doubleshot":
                 if (goldCount >= price) {
-                    goldCount -= (int)price;
+                    goldCount -= price;
                     ak.Upgrade(attribute);
                     return true;
                 }
@@ -376,12 +376,12 @@ public class PlayerController : MonoBehaviour {
         return false;
     }
 
-    public bool UpgradeShotgun(String attribute, float price) {
+    public bool UpgradeShotgun(String attribute, int price) {
         Shotgun shotgun2 = shotgun.GetComponent<Shotgun>();
         switch (attribute) {
             case "Speed":
                 if (steelCount >= price) {
-                    steelCount -= (int)price;
+                    steelCount -= price;
                     shotgun2.Upgrade(attribute);
                     return true;
                 }
@@ -389,7 +389,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Damage":
                 if (copperCount >= price) {
-                    copperCount -= (int)price;
+                    copperCount -= price;
                     shotgun2.Upgrade(attribute);
                     return true;
                 }
@@ -397,7 +397,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Scatter":
                 if (goldCount >= price) {
-                    goldCount -= (int)price;
+                    goldCount -= price;
                     shotgun2.Upgrade(attribute);
                     return true;
                 }
@@ -408,12 +408,12 @@ public class PlayerController : MonoBehaviour {
         return false;
     }
 
-    public bool UpgradeRocketLauncher(String attribute, float price) {
+    public bool UpgradeRocketLauncher(String attribute, int price) {
         RocketLauncher rocket = rocketlauncher.GetComponent<RocketLauncher>();
         switch (attribute) {
             case "Speed":
                 if (steelCount >= price) {
-                    steelCount -= (int)price;
+                    steelCount -= price;
                     rocket.Upgrade(attribute);
                     return true;
                 }
@@ -421,7 +421,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Damage":
                 if (copperCount >= price) {
-                    copperCount -= (int)price;
+                    copperCount -= price;
                     rocket.Upgrade(attribute);
                     return true;
                 }
@@ -429,7 +429,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case "Explosion":
                 if (goldCount >= price) {
-                    goldCount -= (int)price;
+                    goldCount -= price;
                     rocket.Upgrade(attribute);
                     return true;
                 }

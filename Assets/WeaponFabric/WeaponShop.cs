@@ -1,6 +1,7 @@
 ﻿using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Weapons.Ak47;
 
 public class WeaponShop : MonoBehaviour {
@@ -11,36 +12,42 @@ public class WeaponShop : MonoBehaviour {
     public TextMeshProUGUI shotgunBuyButton;
     public TextMeshProUGUI rocketLauncherBuyButton;
 
-    [Header("AkPrices")] public float akBuyPrice = 50;
+    [Header("AkPrices")] public int akBuyPrice = 50;
     public float akSpeedUpgradePrice = 10;
     public float akDamageUpgradePrice = 25;
     public float akDoubleshotUpgradePrice = 50;
-    
-    [Header("ShotgunPrices")] public float shotgunBuyPrice = 250;
+
+    [Header("ShotgunPrices")] public int shotgunBuyPrice = 250;
     public float shotgunSpeedUpgradePrice = 10;
     public float shotgunDamageUpgradePrice = 35;
     public float shotgunDoubleshotUpgradePrice = 150;
-    
-    [Header("RocketLauncherPrices")] public float rocketLauncherBuyPrice = 450;
+
+    [Header("RocketLauncherPrices")] public int rocketLauncherBuyPrice = 450;
     public float rocketLauncherSpeedUpgradePrice = 15;
     public float rocketLauncherDamageUpgradePrice = 40;
     public float rocketLauncherDoubleshotUpgradePrice = 100;
 
     public void BuyAk() {
-        if (player.BuyAk47()) {
+        if (player.BuyAk47(akBuyPrice)) {
             akBuyButton.text = "Unlocked";
+            akBuyButton.alignment = TextAlignmentOptions.Center;
+            akBuyButton.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
     public void BuyShotgun() {
-        if (player.BuyShotgun()) {
+        if (player.BuyShotgun(shotgunBuyPrice)) {
             shotgunBuyButton.text = "Unlocked";
+            shotgunBuyButton.alignment = TextAlignmentOptions.Center;
+            shotgunBuyButton.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
     public void BuyRocketLauncher() {
-        if (player.BuyRocketLauncher()) {
+        if (player.BuyRocketLauncher(rocketLauncherBuyPrice)) {
             rocketLauncherBuyButton.text = "Unlocked";
+            rocketLauncherBuyButton.alignment = TextAlignmentOptions.Center;
+            rocketLauncherBuyButton.transform.GetChild(0).gameObject.SetActive(false);
         }
     }
 
@@ -50,27 +57,29 @@ public class WeaponShop : MonoBehaviour {
         switch (text.name) {
             case "Speed":
                 price = akSpeedUpgradePrice;
-                if (player.UpgradeAk(text.name, price)) {
+                if (player.UpgradeAk(text.name, (int)price)) {
                     akSpeedUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + akSpeedUpgradePrice;
+                    text.text = "Upgrade for " + (int)akSpeedUpgradePrice;
                 }
+
                 break;
             case "Damage":
                 price = akDamageUpgradePrice;
-                if (player.UpgradeAk(text.name, price)) {
+                if (player.UpgradeAk(text.name, (int)price)) {
                     akDamageUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + akDamageUpgradePrice;
+                    text.text = "Upgrade for " + (int)akDamageUpgradePrice;
                 }
+
                 break;
             case "Doubleshot":
                 price = akDoubleshotUpgradePrice;
-                if (player.UpgradeAk(text.name, price)) {
+                if (player.UpgradeAk(text.name, (int)price)) {
                     akDoubleshotUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + akDoubleshotUpgradePrice;
+                    text.text = "Upgrade for " + (int)akDoubleshotUpgradePrice;
                 }
+
                 break;
         }
-
     }
 
     public void UpgradeShotgun(TextMeshProUGUI text) {
@@ -79,54 +88,59 @@ public class WeaponShop : MonoBehaviour {
         switch (text.name) {
             case "Speed":
                 price = shotgunSpeedUpgradePrice;
-                if (player.UpgradeShotgun(text.name, price)) {
+                if (player.UpgradeShotgun(text.name, (int)price)) {
                     shotgunSpeedUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + shotgunSpeedUpgradePrice;
+                    text.text = "Upgrade for " + (int)shotgunSpeedUpgradePrice;
                 }
+
                 break;
             case "Damage":
                 price = shotgunDamageUpgradePrice;
-                if (player.UpgradeShotgun(text.name, price)) {
+                if (player.UpgradeShotgun(text.name, (int)price)) {
                     shotgunDamageUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + shotgunDamageUpgradePrice;
+                    text.text = "Upgrade for " + (int)shotgunDamageUpgradePrice;
                 }
+
                 break;
             case "Scatter":
                 price = shotgunDoubleshotUpgradePrice;
-                if (player.UpgradeShotgun(text.name, price)) {
+                if (player.UpgradeShotgun(text.name, (int)price)) {
                     shotgunDoubleshotUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + shotgunDoubleshotUpgradePrice;
+                    text.text = "Upgrade for " + (int)shotgunDoubleshotUpgradePrice;
                 }
+
                 break;
         }
-
     }
+
     public void UpgradeRocketLauncher(TextMeshProUGUI text) {
         float price;
 
         switch (text.name) {
             case "Speed":
                 price = rocketLauncherSpeedUpgradePrice;
-                if (player.UpgradeRocketLauncher(text.name, price)) {
+                if (player.UpgradeRocketLauncher(text.name, (int)price)) {
                     rocketLauncherSpeedUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + rocketLauncherSpeedUpgradePrice;
+                    text.text = "Upgrade for " + (int)rocketLauncherSpeedUpgradePrice;
                 }
+
                 break;
             case "Damage":
                 price = rocketLauncherDamageUpgradePrice;
-                if (player.UpgradeRocketLauncher(text.name, price)) {
+                if (player.UpgradeRocketLauncher(text.name, (int)price)) {
                     rocketLauncherDamageUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + rocketLauncherDamageUpgradePrice;
+                    text.text = "Upgrade for " + (int)rocketLauncherDamageUpgradePrice;
                 }
+
                 break;
             case "Explosion":
                 price = rocketLauncherDoubleshotUpgradePrice;
-                if (player.UpgradeRocketLauncher(text.name, price)) {
+                if (player.UpgradeRocketLauncher(text.name, (int)price)) {
                     rocketLauncherDoubleshotUpgradePrice *= 1.2f;
-                    text.text = "Upgrade for " + rocketLauncherDoubleshotUpgradePrice;
+                    text.text = "Upgrade for " + (int)rocketLauncherDoubleshotUpgradePrice;
                 }
+
                 break;
         }
-
     }
 }
