@@ -48,7 +48,8 @@ public class PlayerController : MonoBehaviour {
     [Header("Experience Manager")] [SerializeField]
     private TextMeshProUGUI levelPoints;
 
-    [SerializeField] private int currentExperience, maxExperience, currentLevel;
+    [SerializeField] private int currentExperience, maxExperience; 
+    public int currentLevel = 0;
 
     [Header("Dash Settings")] [SerializeField]
     public Image dashImage;

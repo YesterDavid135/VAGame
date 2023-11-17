@@ -8,24 +8,25 @@ public class WeaponShop : MonoBehaviour {
     [Header("Player")] public PlayerController player;
 
 
-    [Header("Labels")] public TextMeshProUGUI akBuyButton;
+    [Header("Labels")] 
+    public TextMeshProUGUI akBuyButton;
     public TextMeshProUGUI shotgunBuyButton;
     public TextMeshProUGUI rocketLauncherBuyButton;
 
     [Header("AkPrices")] public int akBuyPrice = 50;
     public float akSpeedUpgradePrice = 10;
     public float akDamageUpgradePrice = 25;
-    public float akDoubleshotUpgradePrice = 50;
+    public float akDoubleshotUpgradePrice = 1;
 
     [Header("ShotgunPrices")] public int shotgunBuyPrice = 250;
     public float shotgunSpeedUpgradePrice = 10;
     public float shotgunDamageUpgradePrice = 35;
-    public float shotgunDoubleshotUpgradePrice = 150;
+    public float shotgunDoubleshotUpgradePrice = 1;
 
     [Header("RocketLauncherPrices")] public int rocketLauncherBuyPrice = 450;
     public float rocketLauncherSpeedUpgradePrice = 15;
     public float rocketLauncherDamageUpgradePrice = 40;
-    public float rocketLauncherDoubleshotUpgradePrice = 100;
+    public float rocketLauncherDoubleshotUpgradePrice = 1;
 
     public void BuyAk() {
         if (player.BuyAk47(akBuyPrice)) {
@@ -74,7 +75,7 @@ public class WeaponShop : MonoBehaviour {
             case "Doubleshot":
                 price = akDoubleshotUpgradePrice;
                 if (player.UpgradeAk(text.name, (int)price)) {
-                    akDoubleshotUpgradePrice *= 1.2f;
+                    akDoubleshotUpgradePrice *= 1.1f;
                     text.text = "Upgrade for " + (int)akDoubleshotUpgradePrice;
                 }
 
@@ -105,7 +106,7 @@ public class WeaponShop : MonoBehaviour {
             case "Scatter":
                 price = shotgunDoubleshotUpgradePrice;
                 if (player.UpgradeShotgun(text.name, (int)price)) {
-                    shotgunDoubleshotUpgradePrice *= 1.2f;
+                    shotgunDoubleshotUpgradePrice *= 1.1f;
                     text.text = "Upgrade for " + (int)shotgunDoubleshotUpgradePrice;
                 }
 
@@ -136,7 +137,7 @@ public class WeaponShop : MonoBehaviour {
             case "Explosion":
                 price = rocketLauncherDoubleshotUpgradePrice;
                 if (player.UpgradeRocketLauncher(text.name, (int)price)) {
-                    rocketLauncherDoubleshotUpgradePrice *= 1.2f;
+                    rocketLauncherDoubleshotUpgradePrice *= 1.1f;
                     text.text = "Upgrade for " + (int)rocketLauncherDoubleshotUpgradePrice;
                 }
 

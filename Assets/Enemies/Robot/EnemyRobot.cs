@@ -23,8 +23,8 @@ public class EnemyRobot : MonoBehaviour, IEnemy {
 
     public Rigidbody2D rb;
 
-    private int expAmount = 40;
-
+    private int expAmount = 60;
+    
     void Start() {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         Healthbar = GetComponentInChildren<FloatingHealthbar>();
@@ -32,7 +32,7 @@ public class EnemyRobot : MonoBehaviour, IEnemy {
         timeBetweenDamage = startTimeBetweenDamage;
         Healthbar.UpdateHealthBar(health, maxHealth);
     }
-
+    
     private void FixedUpdate() {
         if (Vector2.Distance(transform.position, playerPos.position) > stoppingDistance) {
             rb.MovePosition(Vector2.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime));
@@ -70,6 +70,19 @@ public class EnemyRobot : MonoBehaviour, IEnemy {
                 isColliding = true;
                 break;
         }
+    }
+
+    public void setHealth(float health)
+    {
+        maxHealth = health;
+    }    
+    public void addDamage(float dmg)
+    {
+        Damage += dmg;
+    }    
+    public string getname()
+    {
+        return "Robot";
     }
 
     public void TakeDamage(float damageAmount) {

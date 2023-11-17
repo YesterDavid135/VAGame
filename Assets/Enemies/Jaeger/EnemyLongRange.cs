@@ -83,4 +83,16 @@ public class EnemyLongRange : MonoBehaviour, IEnemy {
             Healthbar.UpdateHealthBar(health, maxHealth);
         }
     }
+    public void setHealth(float health)
+    {
+        maxHealth = health;
+    }
+    public void addDamage(float dmg)
+    {
+        // nothing yet
+    }
+    public string getname()
+    {
+        return "LongRange";
+    }
 }

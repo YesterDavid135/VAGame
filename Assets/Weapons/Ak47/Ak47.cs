@@ -11,7 +11,7 @@ namespace Weapons.Ak47 {
         public float damage = 4;
         public float doubleShot;
         private Random rand = new Random(34);
-        public float fireRate = 0.1f;
+        public float fireRate = 0.5f;
         private bool canFire = true; // Add this variable to control the cooldown
         private float cooldownTimer; // Set the cooldown time
 

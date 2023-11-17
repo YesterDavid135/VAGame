@@ -24,11 +24,11 @@ public class Buggy : MonoBehaviour, IEnemy
     public float startTimeBetweenDamage;
 
     public Rigidbody2D rb;
-    private int expAmount = 50;
+    private int expAmount = 100;
 
     [Header("Dash Settings")] 
     [SerializeField] public float dashSpeed = 15;
-    [SerializeField] public float dashDuration = 1;
+    [SerializeField] public float dashDuration = 2;
     [SerializeField] public float dashCooldown = 9;
     private bool canDash = true;
     
@@ -119,5 +119,17 @@ public class Buggy : MonoBehaviour, IEnemy
         {
             Healthbar.UpdateHealthBar(health, maxHealth);
         }
+    }
+    public void setHealth(float health)
+    {
+        maxHealth = health;
+    }
+    public void addDamage(float dmg)
+    {
+        Damage += dmg;
+    }
+    public string getname()
+    {
+        return "Buggy";
     }
 }

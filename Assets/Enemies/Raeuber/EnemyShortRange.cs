@@ -100,4 +100,18 @@ public class EnemyShortRange : MonoBehaviour, IEnemy
             Healthbar.UpdateHealthBar(health, maxHealth);
         }
     }
+    public void setHealth(float health)
+    {
+        maxHealth = health;
+        Debug.Log(maxHealth);
+    }
+    public void addDamage(float dmg)
+    {
+        Damage += dmg;
+        Debug.Log(Damage);
+    }
+    public string getname()
+    {
+        return "ShortRange";
+    }
 }
