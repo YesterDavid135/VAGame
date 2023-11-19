@@ -48583,7 +48583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: goldCount
-      value: 0
+      value: 433
       objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: healAmount
@@ -48595,11 +48595,11 @@ PrefabInstance:
       objectReference: {fileID: 1741767343}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: steelCount
-      value: 0
+      value: 2432
       objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: copperCount
-      value: 0
+      value: 2345
       objectReference: {fileID: 0}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: levelPoints
@@ -48639,7 +48639,7 @@ PrefabInstance:
       objectReference: {fileID: 427560188}
     - target: {fileID: 5154538097747711168, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: electronicCount
-      value: 0
+      value: 1343
       objectReference: {fileID: 0}
     - target: {fileID: 6407849244149988030, guid: 4d2c4f4760d545a4fa3bdb12bcaeda44, type: 3}
       propertyPath: m_LocalPosition.x
